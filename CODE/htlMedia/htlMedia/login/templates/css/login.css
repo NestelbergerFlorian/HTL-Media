@@ -15,8 +15,8 @@
 }
 
 @font-face {
-    font-family: 'quanticobold';
-    src: url("../assets/fonts/Quantico-Bold.ttf");
+    font-family: 'Roboto Regular';
+    src: url("../assets/fonts/Roboto-Regular.ttf");
 }
 
 html {
@@ -56,12 +56,36 @@ html {
         display: flex;
         justify-content: center;
         flex-direction: column;
-        margin-top: 35%;
+        margin-top: 25%;
     }
     
     #llogo{
         width: 70%;
         height: auto;
         align-self: center;
+    }
+
+    .linputcredentials{
+        margin-top: 30px;
+    }
+
+    .lcredentialinput{
+        border: none;
+        outline: none;
+        background-color: var(--background);
+        border-bottom: 2px solid var(--text);
+        opacity: 0.5;
+        color: var(--text);
+        margin: 30px 0;
+        font-size: 1.2rem;
+        width: 100%;
+        font-family: "Roboto Regular";
+        resize: vertical;
+    }
+
+    .lcredentialinput:focus{
+        opacity: 1;
+        border-bottom: 2px solid var(--accent);
+        box-shadow: 0px 10px 20px 0px var(--secondary);
     }
 }
