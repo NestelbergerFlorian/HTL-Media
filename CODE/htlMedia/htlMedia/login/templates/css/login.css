@@ -1,0 +1,67 @@
+:root[data-theme="dark"] {
+    --text: #eae9fc;
+    --background: #1a1a1a;
+    --primary: #bd6ff1;
+    --secondary: #8a2cdd;
+    --accent: #c966ff;
+}
+
+:root[data-theme="light"] {
+    --text: #040316;
+    --background: #e6e6e6;
+    --primary: #5c0e90;
+    --secondary: #8022d3;
+    --accent: #630099;
+}
+
+@font-face {
+    font-family: 'quanticobold';
+    src: url("../assets/fonts/Quantico-Bold.ttf");
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 100%;
+    margin: 0;
+}
+
+/* all login classes start with l */
+@media all and (min-width: 360px){
+
+    body{
+        color: var(--text);
+        background-color: var(--background);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        height: 100vh;
+        width: auto !important;
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+        position: relative;
+        line-height: 1.75;
+    }
+
+    .allwrappercenter{
+        display: flex;
+        justify-content: center;
+    }
+    
+    .allwrapperwidth90{
+        width: 90%;
+    }
+
+    #lcenterlogo{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: 35%;
+    }
+    
+    #llogo{
+        width: 70%;
+        height: auto;
+        align-self: center;
+    }
+}
