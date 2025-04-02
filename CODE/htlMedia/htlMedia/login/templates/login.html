@@ -58,7 +58,7 @@
 <body>
     <div class="container">
         <h1>Login Test</h1>
-        <form method="post" action="{% url 'login' %}">
+        <form method="post" action="{% url 'login_test' %}">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Login</button>
