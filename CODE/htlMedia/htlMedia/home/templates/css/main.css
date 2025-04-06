@@ -19,6 +19,11 @@
     src: url("../assets/fonts/Roboto-Regular.ttf");
 }
 
+@font-face {
+    font-family: 'Roboto Bold';
+    src: url("../assets/fonts/Roboto-Bold.ttf");
+}
+
 html {
     scroll-behavior: smooth;
     font-size: 100%;
@@ -40,6 +45,54 @@ html {
         overflow-x: hidden;
         position: relative;
         line-height: 1.75;
+        margin: 0;
     }
+
+    /* all home classes start with h */
+
+    #hdepartment{
+        font-size: 2.5rem;
+        font-family: "Roboto Bold";
+    }
+
+    header{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    header > div{
+        display: flex;
+        justify-content: space-between;
+        width: 85%;
+        align-self: center;
+    }
+
+    #hheaderbar{
+        height: 4px;
+        margin: 0;
+        width: 100%;
+        background-color: var(--secondary);
+    }
+
+    #hhamburger{
+        width: 13%;
+        aspect-ratio: 1/1;
+    }
+
+    #hhamburger > svg{
+        height: 100%;
+        width: 100%;
+    }
+
+    /* .hburgerbar{
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        -webkit-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+        background-color: white;
+    } */
 
 }
