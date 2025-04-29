@@ -122,3 +122,25 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTHENTICATION_BACKENDS = [
+  'django_auth_ldap.backend.LDAPBackend',
+  'django.contrib.auth.backends.ModelBackend', # This is required for fallback
+]
+# LDAP Server Settings
+AUTH_LDAP_SERVER_URI = "ldap://your-ldap-server-url"
+AUTH_LDAP_BIND_DN = "CN=your-ldap-bind-user,OU=Users,DC=your-domain,DC=com"
+AUTH_LDAP_BIND_PASSWORD = "your-ldap-bind-password"
+# Map LDAP attributes to Django user fields
+AUTH_LDAP_USER_ATTR_MAP = {
+  "username": "sAMAccountName",
+  "first_name": "givenName", # User Attributes
+  "last_name": "sn",
+}
+
+AUTH_LDAP_USER_SEARCH = LDAPSearch(
+  "OU=Users,DC=your-domain,DC=com", # LDAP search base
+  ldap.SCOPE_SUBTREE, # Scope
+  "(sAMAccountName=%(user)s)", # LDAP search filter
+)
+# https://medium.com/@satyayellacharigoli/step-by-step-guide-to-integrate-active-directory-with-django-f556390c8581
