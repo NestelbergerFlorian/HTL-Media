@@ -4,6 +4,7 @@
     --primary: #bd6ff1;
     --secondary: #8a2cdd;
     --accent: #c966ff;
+    --greylimiter: #454545;
 }
 
 :root[data-theme="light"] {
@@ -12,6 +13,7 @@
     --primary: #5c0e90;
     --secondary: #8022d3;
     --accent: #630099;
+    --greylimiter: #a0a0a0;
 }
 
 @font-face {
@@ -26,6 +28,7 @@
 
 html {
     scroll-behavior: smooth;
+    font-family: "Roboto Regular";
     font-size: 100%;
     margin: 0;
 }
@@ -48,7 +51,21 @@ html {
         margin: 0;
     }
 
-    /* all home classes start with h */
+    input {
+        min-width: 0;
+    }
+
+    input:focus{
+        border: none;
+        text-decoration: none;
+        outline: none;
+    }
+
+    main{
+        width: 100%;
+    }
+
+
 
     #hdepartment{
         font-size: 2.5rem;
@@ -102,4 +119,88 @@ html {
         background-color: white;
     } */
 
+
+
+
+
+
+        /* all home classes start with h */
+
+    .hlimiter{
+        height: 4px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    #hsearchwrapper{
+        width: 95%;
+        margin: 5px 0;
+        justify-self: center;
+    }
+
+    #hsearchflex{
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    #hsearchinput{
+        background-color: var(--background);
+        border: none;
+        color: var(--text);
+        font-size: 1.5rem;
+        width: 100%;
+    }
+
+    #hsearchicon{
+        height: 1.875rem;
+        width: auto;
+        aspect-ratio: 1/1;
+    }
+
+    #hsearchbarbar{
+        background-color: var(--greylimiter);
+    }
+
+    #tagwrapper{
+    }
+
+    #tagflex{
+        display: flex;
+        align-items: center;
+        font-size: 1.5rem;
+        white-space: nowrap;
+    }
+
+    #tagflex svg{
+        margin: 0 12px;
+    }
+
+    #tagname{
+        margin: 0 5px 0 0;
+    }
+
+    #tagline{
+        background-color: var(--text);
+        width: 100%;
+        height: 4px;
+    }
+
+    #tagimgwrapper{
+        overflow-x: scroll;
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .tagimg{
+        width: 30%;
+        aspect-ratio: 1/1;
+        background-color: var(--greylimiter);
+        margin: 0 5px;
+        margin-bottom: 10px;
+    }
+
+    .tagflexhide{
+        display: none !important;
+    }
 }
