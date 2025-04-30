@@ -16,29 +16,35 @@
         </div>
         <div id="hheaderbar"></div>
     </header>
-    <main>
-        <form id="hsearchwrapper">
-            <div id="hsearchflex">
-                <i class="fa-solid fa-magnifying-glass" id="hsearchicon"></i>
-                <input type="text" id="hsearchinput" required placeholder="Search"/>
-                <i class="fa-solid fa-filter" id="hsearchicon"></i>
-            </div>
-        </form>
-        <div id="hsearchbarbar" class="hlimiter"></div>
+    <div id="allwrappercenter">
+        <div id="allwrapperwidth90">
+            <main>
+                <form id="hsearchwrapper">
+                    <div id="hsearchflex">
+                        <i class="fa-solid fa-magnifying-glass" id="hsearchicon"></i>
+                        <input type="text" id="hsearchinput" required placeholder="Search"/>
+                        <i class="fa-solid fa-filter" id="hsearchicon"></i>
+                    </div>
+                </form>
+                <div id="hsearchbarbar" class="hlimiter"></div>
 
-        <div id="tagwrapper">
-            <div id="tagflex" onclick="toggleTagDisplay()">
-                <i class="fa-solid fa-chevron-down" id="tagpermaid"></i><div id="tagname">tmp name</div><div id="tagline"></div>
-            </div>
-            <div id="tagimgwrapper">
-                <img src="./assets/icons/burgermenu.svg" class="tagimg">
-                <img src="./assets/icons/burgermenu.svg" class="tagimg">
-                <img src="./assets/icons/burgermenu.svg" class="tagimg">
-                <img src="./assets/icons/burgermenu.svg" class="tagimg">
-                <img src="./assets/icons/burgermenu.svg" class="tagimg">
-            </div>
+                <div id="hdepartment">
+                    <div id="htagflex" onclick="toggleTagDisplay()">
+                        <i class="fa-solid fa-chevron-down" id="htagpermaid"></i><div id="htagname">tmp name</div><div id="htagline"></div>
+                    </div>
+                    <div id="htagimgwrapper">
+                        <img src="./assets/icons/burgermenu.svg" class="htagimg">
+                        <img src="./assets/icons/burgermenu.svg" class="htagimg">
+                        <img src="./assets/icons/burgermenu.svg" class="htagimg">
+                        <img src="./assets/icons/burgermenu.svg" class="htagimg">
+                        <img src="./assets/icons/burgermenu.svg" class="htagimg">
+                    </div>
+                </div>
+
+                <div id="huploadbutton"><i class="fa-solid fa-plus"></i></div>
+            </main>
         </div>
-    </main>
+    </div>
 </body>
 <script src="./js/tagfunctions.js"></script>
 <script src="./js/fontawesome.js"></script>

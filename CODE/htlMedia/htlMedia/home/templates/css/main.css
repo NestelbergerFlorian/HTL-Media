@@ -66,10 +66,20 @@ html {
     }
 
 
+    #allwrappercenter{
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    #allwrapperwidth90{
+        width: 100%;
+    }
 
     #hdepartment{
         font-size: 2.5rem;
         font-family: "Roboto Bold";
+        align-self: center;
     }
 
     header{
@@ -162,45 +172,77 @@ html {
         background-color: var(--greylimiter);
     }
 
-    #tagwrapper{
-    }
-
-    #tagflex{
+    #htagflex{
         display: flex;
         align-items: center;
         font-size: 1.5rem;
         white-space: nowrap;
+        user-select: none;
     }
 
-    #tagflex svg{
+    #htagflex:hover{
+        cursor: pointer;
+    }
+
+    #htagflex svg{
         margin: 0 12px;
+        aspect-ratio: 1/1;
     }
 
-    #tagname{
+    #htagname{
+        font-family: "Roboto Regular";
         margin: 0 5px 0 0;
     }
 
-    #tagline{
+    #htagline{
         background-color: var(--text);
         width: 100%;
         height: 4px;
     }
 
-    #tagimgwrapper{
+    #htagimgwrapper{
         overflow-x: scroll;
         display: flex;
         flex-wrap: nowrap;
     }
 
-    .tagimg{
-        width: 30%;
+    .htagimg{
+        max-width: 30%;
+        max-height: 30vh;
         aspect-ratio: 1/1;
         background-color: var(--greylimiter);
         margin: 0 5px;
         margin-bottom: 10px;
     }
 
-    .tagflexhide{
+    .htagflexhide{
         display: none !important;
     }
+
+    #huploadbutton{
+        background-color: var(--accent);
+        width: 25%;
+        max-width: 20%;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+        position: fixed;
+        right: 5%;
+        bottom: 5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+    }
+}
+
+@media all and (min-width: 1024px) {
+    
+    #allwrapperwidth90{
+        width: 90%;
+    }
+
+    #hhamburger{
+        display: none;
+    }
+
 }
