@@ -127,24 +127,45 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTHENTICATION_BACKENDS = [
-  'django_auth_ldap.backend.LDAPBackend',
-  'django.contrib.auth.backends.ModelBackend', # This is required for fallback
-]
-# LDAP Server Settings
-AUTH_LDAP_SERVER_URI = "ldap://your-ldap-server-url"
-AUTH_LDAP_BIND_DN = "CN=your-ldap-bind-user,OU=Users,DC=your-domain,DC=com"
-AUTH_LDAP_BIND_PASSWORD = "your-ldap-bind-password"
-# Map LDAP attributes to Django user fields
-AUTH_LDAP_USER_ATTR_MAP = {
-  "username": "sAMAccountName",
-  "first_name": "givenName", # User Attributes
-  "last_name": "sn",
+AUTH_LDAP_GLOBAL_OPTIONS = {
+    ldap.OPT_X_TLS_REQUIRE_CERT: ldap.OPT_X_TLS_NEVER,  # Zertifikate ignorieren
+    ldap.OPT_DEBUG_LEVEL: 255  # Ausführliches LDAP-Logging
 }
-
+ 
+AUTH_LDAP_SERVER_URI = os.getenv('LDAP_HOST')
+ 
+AUTH_LDAP_BIND_DN = os.getenv('LDAP_BIND_DN')
+AUTH_LDAP_BIND_PASSWORD = os.getenv('LDAP_BIND_PASSWORD')
 AUTH_LDAP_USER_SEARCH = LDAPSearch(
-  "OU=Users,DC=your-domain,DC=com", # LDAP search base
-  ldap.SCOPE_SUBTREE, # Scope
-  "(sAMAccountName=%(user)s)", # LDAP search filter
+    os.getenv('LDAP_USER_SEARCH'), ldap.SCOPE_SUBTREE, "(uid=%(user)s)"
 )
+ 
+AUTH_LDAP_GROUP_SEARCH = LDAPSearch(
+    os.getenv('LDAP_GROUP_SEARCH'),
+    ldap.SCOPE_SUBTREE,
+    "(objectClass=groupOfNames)",
+)
+ 
+AUTH_LDAP_GROUP_TYPE = GroupOfNamesType(name_attr="cn")
+ 
+AUTH_LDAP_USER_FLAGS_BY_GROUP = {
+    "is_superuser": os.getenv('LDAP_SUPERUSER_FLAGS'),
+}
+ 
+AUTH_LDAP_FIND_GROUP_PERMS = True
+ 
+AUTH_LDAP_USER_ATTR_MAP = {
+    "first_name": os.getenv('LDAP_USER_ATTR_FN'),
+    "last_name": os.getenv('LDAP_USER_ATTR_LN'),
+    "email": os.getenv('LDAP_USER_ATTR_EMAIL'),
+    "ldrole": os.getenv('LDAP_USER_ATTR_LDROLE'),
+ 
+}
+ 
+AUTH_LDAP_ALWAYS_UPDATE_USER = True
+ 
+AUTHENTICATION_BACKENDS = [
+    "django_auth_ldap.backend.LDAPBackend",
+    "django.contrib.auth.backends.ModelBackend",
+]
 # https://medium.com/@satyayellacharigoli/step-by-step-guide-to-integrate-active-directory-with-django-f556390c8581

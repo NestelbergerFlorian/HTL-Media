@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.urls import include, path
 from django.views.generic import RedirectView
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('',include('login.urls')),
