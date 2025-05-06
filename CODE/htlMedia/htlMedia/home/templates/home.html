@@ -21,6 +21,17 @@
             </header>
 
             <div id="body">
+                {% for post in data %}
+                <div>
+                    <div>{{post.titel}}</div>
+                    <img src="{{post.image_file.url }}" >
+                    <div>
+                        {{post.uploaded_by}}
+                        {{post.uploaded_at}}
+                        {{post.main_Tag}}
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         </div>
         <div id="sidebar">
