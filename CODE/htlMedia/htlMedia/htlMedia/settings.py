@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-
+import os
+import sys
 import ldap 
 from django_auth_ldap.config import LDAPSearch 
 # pip install django-auth-ldap
