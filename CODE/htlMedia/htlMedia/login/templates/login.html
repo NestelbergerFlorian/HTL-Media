@@ -1,26 +1,26 @@
 <!DOCTYPE html>
-<html data-theme="dark" lang="en">
+<html data-theme="lighttheme" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./css/login.css" rel="stylesheet">
+    {% load static %}
+    <link href="{% static 'login/src/output.css' %}" rel="stylesheet">
     <title>Document</title>
 </head>
-<body>
-    <div class="allwrappercenter">
-        <div class="allwrapperwidth90">
-            <div id="lcenterlogo">
-                <img src="./assets/htl_logo.png" id="llogo" draggable="false">
-            </div>
+<body class="bg-base-100 w-full h-full flex justify-center">
 
-            <form id="linputform">
-                <div class="linputcredentials">
-                    <input type="text" class="lcredentialinput" required placeholder="Username"/>
-                    <input type="text" class="lcredentialinput" required placeholder="Password"/>
-                </div>
-                <div id="lcenterloginbutton"><input type="submit" id="lloginbutton" value="Login"></div>
-            </form>
-        </div>
+    <div class="md:w-2/3 md:self-center lg:w-1/2 xl:w-1/4">
+        {% load static %}
+        <img src="{% static '/login/htl_logo.png' %}" class="w-3/4 justify-self-center m-8" draggable="false">
+
+        <form method="post" action="{% url 'login_test' %}" class="w-full flex-col flex items-center justify-center">
+            {% csrf_token %}
+            <input type="text" class="text-base-content text-xl w-8/10 my-8 border-b-2 border-base-200 opacity-50 focus:border-b-2 focus:border-primary focus:opacity-100  focus:outline-none focus:shadow-lg focus:shadow-secondary" required placeholder="Username" name="username"/>
+            <input type="password" class="text-base-content text-xl w-8/10 mt-3 border-b-2 border-base-200 opacity-50 focus:border-b-2 focus:border-primary focus:opacity-100  focus:outline-none focus:shadow-lg focus:shadow-secondary" required placeholder="Password" name="password"/>
+            <p class="invisible text-error text-center mt-3">Username or Password is invalid</p>
+            <input type="submit" class="btn btn-primary rounded-2xl text-lg px-8 mt-12 border-none shadow-none" value="Login">
+        </form>
     </div>
+    <!-- npx tailwindcss -i ./src/input.css -o ./src/output.css --watch -->
 </body>
 </html>
