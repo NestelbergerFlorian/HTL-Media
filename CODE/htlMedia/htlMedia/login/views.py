@@ -16,7 +16,6 @@ def home(request):
     print("home view called")
     return render(request, 'home.html')  # <-- das rendert mit RequestContex
 
-
 def authenticate_ldap(request):
     print("Authenticate LDAP called")
     username = request.POST.get('username')
