@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html data-theme="dark" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link href="{% static '/login/login.css' %}" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <div class="allwrappercenter">
+        <div class="allwrapperwidth90">
+            <div id="lcenterlogo">
+                {% load static %}
+                <img src="{% static '/login/htl_logo.png' %}" id="llogo" draggable="false">
+            </div>
+            <form method="post" action="{% url 'login_test' %}">
+                {% csrf_token %}
+                <input type="text"     class="lcredentialinput" required placeholder="Username" name="username"/>
+                <input type="password" class="lcredentialinput" required placeholder="Password" name="password"/>
+                <div id="lcenterloginbutton"><input type="submit" id="lloginbutton" value="Login"></div>
+            </form>
+
+            {% if form.errors %}
+                <p class="error-message">Benutzername oder Passwort ist falsch. Bitte versuchen Sie es erneut.</p>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
