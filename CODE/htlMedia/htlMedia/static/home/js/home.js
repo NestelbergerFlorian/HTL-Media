@@ -20,4 +20,10 @@ function activateUploadform() {
 
 const hamburgerbutton = document.getElementById("hhamburger").addEventListener("click",(event) => {hamburgerClick()});
 const backButton =      document.getElementById("backButton").addEventListener("click",(event) => {backButtonClick()});
-const upload =          document.getElementById("uploadButton").addEventListener("click",(event) => {activateUploadform()})
+const upload =          document.getElementById("uploadButton").addEventListener("click",(event) => {activateUploadform()});
+
+const DarkLightModeToggle = document.getElementById("DarkLightModeToggle");
+if (DarkLightModeToggle.checked) {
+    const Html = document.getElementById("html"); 
+Html.setAttribute("data-theme", "light");
+}
