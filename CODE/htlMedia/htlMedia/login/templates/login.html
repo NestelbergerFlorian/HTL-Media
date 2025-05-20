@@ -14,6 +14,13 @@
                 {% load static %}
                 <img src="{% static '/login/htl_logo.png' %}" id="llogo" draggable="false">
             </div>
+            {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
             <form method="post" action="{% url 'login_test' %}">
                 {% csrf_token %}
                 <input type="text"     class="lcredentialinput" required placeholder="Username" name="username"/>
