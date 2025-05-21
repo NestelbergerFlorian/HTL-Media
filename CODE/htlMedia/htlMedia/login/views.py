@@ -9,7 +9,7 @@ from ldap3.core.exceptions import LDAPException
 from django.shortcuts import render 
 
 def login(request):
-    print("Login view called")
+    print("Login view called")  # <-- das rendert mit RequestContext
     return render(request, 'login.html')  # <-- das rendert mit RequestContext
 
 def home(request):

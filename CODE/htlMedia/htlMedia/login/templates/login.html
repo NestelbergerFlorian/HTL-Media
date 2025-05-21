@@ -21,7 +21,7 @@
             {% endfor %}
         </ul>
     {% endif %}
-            <form method="post" action="{% url 'login_test' %}">
+            <form method="post" action="{% url 'authenticate_ldap' %}">
                 {% csrf_token %}
                 <input type="text"     class="lcredentialinput" required placeholder="Username" name="username"/>
                 <input type="password" class="lcredentialinput" required placeholder="Password" name="password"/>
