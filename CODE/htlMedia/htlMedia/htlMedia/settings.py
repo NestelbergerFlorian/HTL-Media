@@ -79,8 +79,8 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "HTL_MEDIA",
-        "USER": "htlmediauser",
-        "PASSWORD": "Schule1",
+        "USER": "postgres",
+        "PASSWORD": "Joni-Gresti2008!",
         "HOST": "localhost",
         "PORT": "5432",
     }
