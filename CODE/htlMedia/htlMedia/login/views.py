@@ -1,20 +1,20 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.template import loader
-from django.contrib.auth import authenticate, login
-from django.contrib import messages
 from ldap3 import Server, Connection, ALL, SIMPLE
 from ldap3.core.exceptions import LDAPException
+from .models import User
 
 from django.shortcuts import render 
 
-def login(request):
-    print("Login view called")  # <-- das rendert mit RequestContext
+def login_view(request):
+    print("Login view called")
     return render(request, 'login.html')  # <-- das rendert mit RequestContext
 
-def home(request):
-    print("home view called")
-    return render(request, 'home.html')  # <-- das rendert mit RequestContex
+def login(request,username,password):
+    user = User.objects.filter(username=username).first()
+    if user == None:
+        User.objects.create(username=username,password = password,roles=1)
+    request.session['user'] = user
+    
 
 def authenticate_ldap(request):
     print("Authenticate LDAP called")
@@ -31,6 +31,7 @@ def authenticate_ldap(request):
         conn = Connection(server, user=user_dn, password=password, authentication=SIMPLE, auto_bind=True)
         print("Authenticated successfully.")
         conn.unbind()
+        login(request,username,password)
         return redirect('home')  # Redirect to a success page or home page
     except LDAPException as e:
         print(f"Authentication failed: {e}")

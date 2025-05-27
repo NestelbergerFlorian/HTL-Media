@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from datetime import timezone
+from django.utils import timezone
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from .froms import PostForm
@@ -10,13 +10,9 @@ def home(request):
     form = PostForm(request.POST, request.FILES)
     if form.is_valid():
       post = form.save(commit=False)
-      post.uploaded_by = request.user
+      print(request.session.get('user',None))
+      post.uploaded_by = request.session.get('user',None)
       post.uploaded_at = timezone.now()
       form.save()
-      return redirect('success')
-  else:
-    form = PostForm()
-    return render(request, 'home.html', {'form': form})
- 
-def success(request):
- return HttpResponse('successfully uploaded')
+  form = PostForm()
+  return render(request, 'home.html', {'form': form})
