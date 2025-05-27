@@ -21,6 +21,22 @@
             </header>
 
             <div id="body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ filterForm.as_p }}
+                    <button type="submit">Upload</button>
+                </form>
+                {% for post in data %}
+                <div>
+                    <div>{{post.titel}}</div>
+                    <img src="{{post.image_file.url }}" >
+                    <div>
+                        {{post.uploaded_by}}
+                        {{post.uploaded_at}}
+                        {{post.main_Tag}}
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         </div>
         <div id="sidebar">

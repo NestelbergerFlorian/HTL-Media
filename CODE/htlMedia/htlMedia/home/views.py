@@ -2,7 +2,9 @@ from django.http import HttpResponse
 from django.utils import timezone
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
-from .froms import PostForm
+from .froms import PostForm,FilterForm
+from .models import Post
+
 
 def home(request):
   print("Hallo World")	
