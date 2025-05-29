@@ -34,5 +34,18 @@ module.exports = {
          */
         // '../../**/*.py'
     ],
+    mode: 'jit', // Enable JIT mode
+    purge: ["*"],
+    theme: {
+    extend: {
+      fontFamily: {
+        roboto: ['Roboto', 'sans-serif'],
+      },
+    },
+  },
+  fontWeight: {
+    bold: '700',
+  },
+  
 }
  
