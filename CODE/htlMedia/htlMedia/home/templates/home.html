@@ -17,14 +17,26 @@
         </div>
         <span class="bg-secondary block w-[100%] h-[3px]"></span>
         <form class="w-[100%] text-base-content flex justify-center">
-            <label class="input !shadow-none border-t-0 border-l-0 border-r-0 border-b-3 w-[100%] focus:border-primary focus:shadow-none md:w-[70%] lg:w-[50%]">
+            <label class="input !shadow-none border-t-0 border-l-0 border-r-0 border-b-3 w-[100%] focus:border-primary focus:shadow-none md:w-[90%] lg:w-[70%]">
                 <i class="fa-solid fa-magnifying-glass align-middle text-2xl"></i>
                 <input type="text" class="w-[100%] text-2xl input shadow-none focus:ring-0" required placeholder="Search" />
                 <i class="fa-solid fa-filter align-middle text-2xl"></i>
             </label>
         </form>
     </header>
-    <main>
+
+    <main class="flex font-roboto justify-center">
+        <main class="w-[100%] md:w-[90%] lg:w-[70%]">
+            <div tabindex="0" class="w-[100%] collapse well">
+                <input type="checkbox"/>
+                <div class="collapse-title flex pr-[1rem] md:pr-0">
+                    <i class="fa-solid fa-chevron-right text-base-200 text-2xl h-[100%] self-center"></i>
+                    <label class="text-base-200 text-2xl text-nowrap m-[8px]">Tag Name</label>
+                    <div class="bg-base-200 h-[3px] w-[100%] self-center"></div>
+                </div>
+                <div class="collapse-content text-base-200">PUT CONTENT HERE</div>
+            </div>
+        </main>
     </main>
     <!-- npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch -->
     <!-- <section class="flex-container">
@@ -67,4 +79,6 @@
 <script src="{% static 'home/js/solid.js' %}"></script>
 {% load static %}
 <script src="{% static 'home/js/fontawesome.js' %}"></script>
+{% load static %}
+<script src="{% static 'home/js/tagfunctions.js' %}"></script>
 </html>
