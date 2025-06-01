@@ -1,3 +1,6 @@
+const sessionUser = document.getElementById("user").getAttribute("user");
+console.log(sessionUser);
+
 function hamburgerClick() {
     displaySideBar(true);
 }
@@ -22,11 +25,18 @@ function postClick(event){
     let view = document.getElementById("view-container");
     view.style.display = "flex";
     view.appendChild(event.target.cloneNode(true));
-    
+
+    if(sessionUser == event.target.getAttribute('posted')){
+        deleteButton = document.getElementById("deleteForm").cloneNode(true);
+        deleteButton.style.display="flex";
+        deleteButton.action="delete/"+event.target.getAttribute('key')
+        view.appendChild(deleteButton)
+    }
 }
 
 function disablePostview(event){
     let view = event.target;
+    view.removeChild(view.lastElementChild);
     view.removeChild(view.lastElementChild);
     view.style.display = "none";
 }

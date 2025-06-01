@@ -1,4 +1,5 @@
 from django.db import models
+import json
 
 # Create your models here.
 class User(models.Model):
@@ -10,3 +11,6 @@ class User(models.Model):
 
     def __str__(self):
       return self.username
+    
+    def to_json(self):
+        return json.dumps(self.__dict__)
