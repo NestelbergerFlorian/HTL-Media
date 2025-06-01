@@ -10,7 +10,7 @@ def home(request):
   user = User.objects.get(pk=request.session.get('user',None))
   form = PostForm()
   filterForm = FilterForm()
-  data = Post.objects.all()
+  data = Post.objects.all().order_by('-uploaded_at')
   users = User.objects.all()
   return render(request, 'home.html', {'user':user,'form': form,'filterForm':filterForm,'data':data,'users':users})
 
@@ -31,10 +31,13 @@ def deletePost(request,pk):
 
 def filteredView(request):
   form = FilterForm(request.POST, request.FILES)
-  post = form.save(commit=False)
+  print(form.data.get("order_by"))
+  if(form.data.get("order_by") == '2'):
+    data = Post.objects.filter(titel__icontains=form.data.get("titel")).order_by('-uploaded_at')
+  else:
+    data = Post.objects.filter(titel__icontains=form.data.get("titel")).order_by('uploaded_at')
   form = PostForm()
   filterForm = FilterForm()
-  data = Post.objects.filter(titel__icontains=post.titel)
   users = User.objects.all()
   user = User.objects.get(pk=request.session.get('user',None))
   return render(request, 'home.html', {'form': form,'filterForm':filterForm,'data':data,'user':user,'users':users})
