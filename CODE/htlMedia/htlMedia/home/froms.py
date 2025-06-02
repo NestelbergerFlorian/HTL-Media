@@ -6,11 +6,8 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ['titel','image_file','main_Tag']
 
-class FilterForm(forms.ModelForm):
-    class Meta:
-        model = Post
-        fields = ['titel']
-
-        def __init__(self, *args, **kwargs):
-            super(FilterForm, self).__init__(*args, **kwargs)
-            self.fields['titel'].blank = True
+class FilterForm(forms.Form):
+    titel = forms.CharField(max_length=200,required=False)
+    order_by = forms.ChoiceField(choices=(
+        (1,"älteste"),(2,"jüngste")
+    ))

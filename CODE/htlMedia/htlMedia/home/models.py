@@ -8,5 +8,5 @@ class Post(models.Model):
     uploaded_by = models.ForeignKey(User, on_delete=models.CASCADE,blank=True, null=True)
     uploaded_at = models.DateTimeField(auto_now_add=True)
     main_Tag = models.CharField(max_length=20,choices=(
-        ("1","3AHIT"),
+        ("1","1AHIT"),("2","2AHIT"),("3","3AHIT"),("4","4AHIT"),("5","5AHIT"),
    ))

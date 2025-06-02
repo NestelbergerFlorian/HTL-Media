@@ -65,6 +65,22 @@
             </header>
 
             <div id="body">
+                <form action="filtername" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ filterForm.as_p }}
+                    <button type="submit">Upload</button>
+                </form>
+                {% for post in data %}
+                <div>
+                    <div>{{post.titel}}</div>
+                    <img src="{{post.image_file.url }}" class="postPic" key="{{post.pk}}" posted="{{post.uploaded_by}}">
+                    <div>
+                        {{post.uploaded_by}}
+                        {{post.uploaded_at}}
+                        {{post.main_Tag}}AHIT
+                    </div>
+                </div>
+                {% endfor %}
             </div>
         </div>
         <div id="sidebar">
@@ -79,12 +95,23 @@
     </section>
 
     <div id="form-container">
-        <form method="post" enctype="multipart/form-data">
+        <form action="upload" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">Upload</button>
         </form>
     </div> -->
+    </div>
+
+    <div id="view-container">
+        
+    </div>
+    <form action="delete" method="post" id="deleteForm" enctype="multipart/form-data" style="display: none;">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+
+    <div id="user" user="{{ user }}" style="display: none;"></div>
 </body>
 {% load static %}
 <script src="{% static 'home/js/home.js' %}"></script>
