@@ -22,7 +22,6 @@
     {% if post == none %}
     <main class="flex font-roboto justify-center">
         <main class="w-[100%] md:w-[90%] lg:w-[70%]">
-
             <form class="w-[100%] text-base-content flex justify-center" action="filter" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <label class="input !shadow-none border-t-0 border-l-0 border-r-0 border-b-3 w-[100%] focus:border-primary focus:shadow-none md:w-[90%] lg:w-[70%]">
@@ -150,7 +149,7 @@
                                 {{post.uploaded_by}}
                                 {{post.uploaded_at}}
                                 Aufrufe:{{post.views}} 
-                                Likes:{{post.likes}}
+                                Likes:{{post.total_likes}}
                             </div>
                         </div>
                     {% endif %}
@@ -160,49 +159,49 @@
         </main>
     </main>
 
-    <main class="flex font-roboto justify-center w-[100%] relative hidden">
-        <div class="w-[75%] aspect-square bg-secondary pointer-events-none mt-7 relative sm:w-auto sm:h-[20%]">
-            <input type="file" class="w-[100%] opacity-0 aspect-square bg-accent pointer-events-auto relative"/>
-            <div class="flex w-[100%] h-[100%] top-0 justify-center items-center flex-col absolute">
-                <i class="fa-solid fa-file-import text-6xl mb-[15px]"></i>
-                <span class="font-bold before:content-['Tap'] lg:before:content-['Click']"> to upload file</span>
-            </div>
-        </div>
-    </main>
-    <npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch -->
-    <div id="form-container">
-        <form action="upload" method="post" enctype="multipart/form-data">
+    <main class="w-[100%] flex justify-center">
+        <main class="flex font-roboto justify-center w-auto relative flex-wrap lg:justify-self-center">
+            <form class="w-[100%] flex justify-center" action="upload" method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Upload</button>
-        </form>
-    </div>
-    </div>
+                <div class="w-[75%] aspect-square bg-secondary pointer-events-none mt-7 relative sm:w-[50%] md:w-[35%] lg:w-[25%]">
+                    {{form.image_file}}
+                    <div class="flex w-[100%] h-[100%] top-0 justify-center items-center flex-col absolute">
+                        <i class="fa-solid fa-file-import text-6xl mb-[15px]"></i>
+                        <span class="font-bold before:content-['Tap'] lg:before:content-['Click']"> to upload file</span>
+                    </div>
+                </div>
+            
+                {% csrf_token %}
+                <div class="w-[75%] sm:w-[50%] md:w-[35%] lg:w-[25%]">
+                    {{form.titel}}
+                    {{form.Description}}
+                    {{form.main_Tag}}
+                    <div class="w-[100%] h-fit flex justify-end">
+                    <button type="submit" class="btn btn-primary rounded-2xl text-lg px-8 mt-12 border-none shadow-none hover:shadow-lg hover:shadow-secondary"><i class="fa-solid fa-upload"></i> Upload</button></div>
+                </div>
+            </form>
+        </main>
+    </main>
     {% endif %}
     {% if post %}
-    <div id="view-container">
-        <a href="/home">Back</a>
-        <div>{{post.titel}}</div>
-        <img src="{{post.image_file.url }}" class="postPic" key="{{post.pk}}" posted="{{post.uploaded_by}}">
-        <div>
-            {{post.uploaded_by}}
-            {{post.uploaded_at}}
-            Aufrufe:{{post.views}} 
-            Likes:{{post.likes}}
+        <div id="view-container">
+            <a href="/home">Back</a>
+            <div>{{post.titel}}</div>
+            <img src="{{post.image_file.url }}" class="postPic" key="{{post.pk}}" posted="{{post.uploaded_by}}">
+            <div>
+                {{post.uploaded_by}}
+                {{post.uploaded_at}}
+                Aufrufe:{{post.views}} 
+                Likes:{{post.total_likes}}
+            </div>
+            <div>
+                {{post.Description}}
+            </div>
+            <a href="/home/like/{{post.pk}}">Like</a>
+            {% if user == post.uploaded_by %}
+            <a href="/home/delete/{{post.pk}}">Delete</a>
+            {% endif %}
         </div>
-        <div>
-            {{post.Description}}
-        </div>
-        <a href="/home/like/{{post.pk}}/0">Like</a>
-        <a href="/home/like/{{post.pk}}/1">Dislike</a>
-        {% if user == post.uploaded_by %}
-        <a href="/home/delete/{{post.pk}}">Delete</a>
-        {% endif %}
-    </div>
-    <form action="delete" method="post" id="deleteForm" enctype="multipart/form-data" style="display: none;">
-        {% csrf_token %}
-        <button type="submit">Delete</button>
-    </form>
     {% endif %}
 
     <div id="user" user="{{ user }}" style="display: none;"></div>

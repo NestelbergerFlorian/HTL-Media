@@ -55,14 +55,15 @@ def deletePost(request,pk):
   post.delete()
   return redirect('/home')
 
-def likePost(request,pk,like):
-  post = get_object_or_404(Post, pk=pk)
-  if like == 0:
-    post.likes = post.likes+1
-  elif like == 1:
-    post.likes = post.likes-1
-  post.save()
-  return redirect("/home/view/"+str(pk))
+def likePost(request,pk):
+    post = get_object_or_404(Post, pk=pk)
+    user = User.objects.get(pk=request.session.get('user',None))
+    if user in post.likes.all():
+        post.likes.remove(user)
+    else:
+        post.likes.add(user)
+    post.save()
+    return redirect("/home/view/"+str(pk))
 
 def viewPost(request,pk):
   post = get_object_or_404(Post, pk=pk)
