@@ -8,9 +8,6 @@ class User(models.Model):
     roles = models.CharField(max_length=3,choices=(
         (0,"admin"),(1,"schueler"),
     ))
-
-    def __str__(self):
-      return self.username
     
     def to_json(self):
         return json.dumps(self.__dict__)

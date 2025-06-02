@@ -46,10 +46,10 @@
                             <div>{{post.titel}}</div>
                             <a href="firstview/{{post.pk}}"><img src="{{post.image_file.url }}" class="postPic" key="{{post.pk}}" posted="{{post.uploaded_by}}"></a>
                             <div>
-                                {{post.uploaded_by}}
+                                {{post.uploaded_by.username}}
                                 {{post.uploaded_at}}
                                 Aufrufe:{{post.views}} 
-                                Likes:{{post.likes}}
+                                Likes:{{post.total_likes}}
                             </div>
                         </div>
                     {% endif %}
@@ -71,10 +71,10 @@
                             <div>{{post.titel}}</div>
                             <a href="firstview/{{post.pk}}"><img src="{{post.image_file.url }}" class="postPic" key="{{post.pk}}" posted="{{post.uploaded_by}}"></a>
                             <div>
-                                {{post.uploaded_by}}
+                                {{post.uploaded_by.username}}
                                 {{post.uploaded_at}}
                                 Aufrufe:{{post.views}} 
-                                Likes:{{post.likes}}
+                                Likes:{{post.total_likes}}
                             </div>
                         </div>
                     {% endif %}
@@ -96,10 +96,10 @@
                             <div>{{post.titel}}</div>
                             <a href="firstview/{{post.pk}}"><img src="{{post.image_file.url }}" class="postPic" key="{{post.pk}}" posted="{{post.uploaded_by}}"></a>
                             <div>
-                                {{post.uploaded_by}}
+                                {{post.uploaded_by.username}}
                                 {{post.uploaded_at}}
                                 Aufrufe:{{post.views}} 
-                                Likes:{{post.likes}}
+                                Likes:{{post.total_likes}}
                             </div>
                         </div>
                     {% endif %}
@@ -121,10 +121,10 @@
                             <div>{{post.titel}}</div>
                             <a href="firstview/{{post.pk}}"><img src="{{post.image_file.url }}" class="postPic" key="{{post.pk}}" posted="{{post.uploaded_by}}"></a>
                             <div>
-                                {{post.uploaded_by}}
+                                {{post.uploaded_by.username}}
                                 {{post.uploaded_at}}
                                 Aufrufe:{{post.views}} 
-                                Likes:{{post.likes}}
+                                Likes:{{post.total_likes}}
                             </div>
                         </div>
                     {% endif %}
@@ -146,7 +146,7 @@
                             <div>{{post.titel}}</div>
                             <a href="firstview/{{post.pk}}"><img src="{{post.image_file.url }}" class="postPic" key="{{post.pk}}" posted="{{post.uploaded_by}}"></a>
                             <div>
-                                {{post.uploaded_by}}
+                                {{post.uploaded_by.username}}
                                 {{post.uploaded_at}}
                                 Aufrufe:{{post.views}} 
                                 Likes:{{post.total_likes}}
@@ -189,7 +189,7 @@
             <div>{{post.titel}}</div>
             <img src="{{post.image_file.url }}" class="postPic" key="{{post.pk}}" posted="{{post.uploaded_by}}">
             <div>
-                {{post.uploaded_by}}
+                {{post.uploaded_by.username}}
                 {{post.uploaded_at}}
                 Aufrufe:{{post.views}} 
                 Likes:{{post.total_likes}}
@@ -198,7 +198,7 @@
                 {{post.Description}}
             </div>
             <a href="/home/like/{{post.pk}}">Like</a>
-            {% if user == post.uploaded_by %}
+            {% if user == post.uploaded_by or user.roles == 0 %}
             <a href="/home/delete/{{post.pk}}">Delete</a>
             {% endif %}
         </div>
