@@ -5,6 +5,7 @@ from django.contrib.auth import logout
 from .froms import PostForm,FilterForm
 from .models import Post
 
+
 def home(request):
  if request.method == 'POST':
   form = PostForm(request.POST, request.FILES)
