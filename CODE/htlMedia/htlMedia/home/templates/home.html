@@ -20,7 +20,6 @@
 
     <main class="flex font-roboto justify-center hidden">
         <main class="w-[100%] md:w-[90%] lg:w-[70%]">
-
             <form class="w-[100%] text-base-content flex justify-center">
                 <label class="input !shadow-none border-t-0 border-l-0 border-r-0 border-b-3 w-[100%] focus:border-primary focus:shadow-none md:w-[90%] lg:w-[70%]">
                     <i class="fa-solid fa-magnifying-glass align-middle text-2xl"></i>
@@ -42,14 +41,25 @@
         </main>
     </main>
 
-    <main class="flex font-roboto justify-center w-[100%] relative">
-        <div class="w-[75%] aspect-square bg-secondary pointer-events-none mt-7 relative sm:w-auto sm:h-[20%]">
-            <input type="file" class="w-[100%] opacity-0 aspect-square bg-accent pointer-events-auto relative"/>
-            <div class="flex w-[100%] h-[100%] top-0 justify-center items-center flex-col absolute">
-                <i class="fa-solid fa-file-import text-6xl mb-[15px]"></i>
-                <span class="font-bold before:content-['Tap'] lg:before:content-['Click']"> to upload file</span>
-            </div>
-        </div>
+    <main class="w-[100%] flex justify-center">
+        <main class="flex font-roboto justify-center w-auto relative flex-wrap lg:justify-self-center">
+            <div class="w-[75%] aspect-square bg-secondary pointer-events-none mt-7 relative sm:w-[50%] md:w-[35%] lg:w-[25%]">
+                <input type="file" class="w-[100%] opacity-0 aspect-square bg-accent pointer-events-auto relative"/>
+                <div class="flex w-[100%] h-[100%] top-0 justify-center items-center flex-col absolute">
+                    <i class="fa-solid fa-file-import text-6xl mb-[15px]"></i>
+                    <span class="font-bold before:content-['Tap'] lg:before:content-['Click']"> to upload file</span>
+                </div>
+            </div><br>
+            <form class="w-[100%] flex justify-center">
+                <div class="w-[75%] sm:w-[50%] md:w-[35%] lg:w-[25%]">
+                    <input type="text" class="text-base-content text-xl w-[100%] my-4 border-b-2 border-base-200 opacity-50 focus:border-b-2 focus:border-primary focus:opacity-100 focus:outline-none focus:shadow-lg focus:shadow-secondary" required placeholder="Title *" name="title"/>
+                    <textarea class="text-base-content text-xl w-[100%] my-4 border-b-2 border-base-200 opacity-50 focus:border-b-2 focus:border-primary focus:opacity-100 focus:outline-none focus:shadow-lg focus:shadow-secondary" required placeholder="Description *" name="description"></textarea>
+                    <input type="text" class="text-base-content text-xl w-[100%] my-4 border-b-2 border-base-200 opacity-50 focus:border-b-2 focus:border-primary focus:opacity-100 focus:outline-none focus:shadow-lg focus:shadow-secondary" required placeholder="Primary Tag *" name="ptag"/>
+                    <input type="text" class="text-base-content text-xl w-[100%] my-4 border-b-2 border-base-200 opacity-50 focus:border-b-2 focus:border-primary focus:opacity-100 focus:outline-none focus:shadow-lg focus:shadow-secondary" placeholder="Secondary Tag" name="stag"/>
+                    <div class="w-[100%] h-fit flex justify-end"><button type="submit" class="btn btn-primary rounded-2xl text-lg px-8 mt-12 border-none shadow-none hover:shadow-lg hover:shadow-secondary"><i class="fa-solid fa-upload"></i> Upload</button></div>
+                </div>
+            </form>
+        </main>
     </main>
     <!-- npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch -->
     <!-- <section class="flex-container">
