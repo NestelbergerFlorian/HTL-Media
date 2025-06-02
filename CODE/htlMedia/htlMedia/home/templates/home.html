@@ -41,7 +41,7 @@
         </main>
     </main>
 
-    <main class="w-[100%] flex justify-center">
+    <main class="w-[100%] flex justify-center hidden">
         <main class="flex font-roboto justify-center w-auto relative flex-wrap lg:justify-self-center">
             <div class="w-[75%] aspect-square bg-secondary pointer-events-none mt-7 relative sm:w-[50%] md:w-[35%] lg:w-[25%]">
                 <input type="file" class="w-[100%] opacity-0 aspect-square bg-accent pointer-events-auto relative"/>
@@ -61,6 +61,58 @@
             </form>
         </main>
     </main>
+
+    <main class="block font-roboto text-base-content mt-7 w-[100%] 2xl:flex 2xl:justify-center">
+        <section class="flex w-[100%] justify-center 2xl:ml-7">
+            {% load static %}
+            <img src="{% static './home/registeel.png' %}" class="sm:w-[80%]">
+        </section>
+        <section class="text-xl flex justify-center w-[100%] mt-7 2xl:ml-7">
+            <!-- medium size -->
+            <table class="hidden sm:table 2xl:hidden border-collapse sm:w-[80%] border-secondary border-[2px]">
+                <tr>
+                    <td class="p-1 border-b border-r border-secondary">
+                        <div class="font-bold">Title</div>
+                        <div class="text-lg">Load Title here</div>
+                    </td>
+                    <td class="p-2 border-b border-secondary">
+                        <div class="font-bold">Primary Tag</div>
+                        <div class="text-lg">Load PTag here</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="p-1 border-r border-secondary">
+                        <div class="font-bold">Description</div>
+                        <div class="text-lg">Load Description here</div>
+                    </td>
+                    <td class="p-2">
+                        <div class="font-bold">Secondary Tag(s)</div>
+                        <div class="text-lg">Load STags here</div>
+                    </td>
+                </tr>
+            </table>
+            <!-- mobile and desktop -->
+            <div class="w-[85%] sm:hidden 2xl:block space-y-4 2xl:w-[75%]">
+                <div class="border-secondary border-[2px] p-2">
+                    <div class="font-bold">Title</div>
+                    <div class="text-lg">Load Title here</div>
+                </div>
+                <div class="border-secondary border-[2px] p-2">
+                    <div class="font-bold">Description</div>
+                    <div class="text-lg">Load Description here</div>
+                </div>
+                <div class="border-secondary border-[2px] p-2">
+                    <div class="font-bold">Primary Tag</div>
+                    <div class="text-lg">Load PTag here</div>
+                </div>
+                <div class="border-secondary border-[2px] p-2">
+                    <div class="font-bold">Secondary Tag(s)</div>
+                    <div class="text-lg">Load STags here</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
     <!-- npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch -->
     <!-- <section class="flex-container">
         <div style="width: 100%;">
