@@ -57,14 +57,24 @@ def deletePost(request,pk):
 
 def likePost(request,pk,like):
   post = get_object_or_404(Post, pk=pk)
-  if like:
+  if like == 0:
     post.likes = post.likes+1
-  else:
+  elif like == 1:
     post.likes = post.likes-1
-  return redirect("/view/"+pk)
+  post.save()
+  return redirect("/home/view/"+str(pk))
 
 def viewPost(request,pk):
   post = get_object_or_404(Post, pk=pk)
   post.views = post.views+1
+  post.save()
+  return redirect("/home/view/"+str(pk))
+
+def postView(request,pk):
+  post = get_object_or_404(Post, pk=pk)
   user = User.objects.get(pk=request.session.get('user',None))
-  return render(request, 'view.html',{'user':user,'post':post})
+  form = PostForm()
+  filterForm = FilterForm()
+  data = Post.objects.all().order_by('-uploaded_at')
+  users = User.objects.all()
+  return render(request, 'home.html', {'user':user,'form': form,'filterForm':filterForm,'data':data,'users':users,'post':post})

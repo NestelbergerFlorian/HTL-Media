@@ -8,6 +8,7 @@
     <title>HTL Media</title>
 </head>
 <body class="text-base-content">
+    
     <header class="bg-base-100 w-[100%]">
         <div class="flex justify-between w-[100%]">
             <div class="text-base-content font-roboto font-bold text-6xl m-4">IT</div>
@@ -18,14 +19,17 @@
         <span class="bg-accent block w-[100%] h-[3px]"></span>
     </header>
 
-    <main class="flex font-roboto justify-center hidden">
+    {% if post == none %}
+    <main class="flex font-roboto justify-center">
         <main class="w-[100%] md:w-[90%] lg:w-[70%]">
 
-            <form class="w-[100%] text-base-content flex justify-center">
+            <form class="w-[100%] text-base-content flex justify-center" action="filter" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
                 <label class="input !shadow-none border-t-0 border-l-0 border-r-0 border-b-3 w-[100%] focus:border-primary focus:shadow-none md:w-[90%] lg:w-[70%]">
                     <i class="fa-solid fa-magnifying-glass align-middle text-2xl"></i>
-                    <input type="text" class="w-[100%] text-2xl input shadow-none focus:ring-0" required placeholder="Search" />
-                    <i class="fa-solid fa-filter align-middle text-2xl"></i>
+                    {{   filterForm.titel  }}
+                    {{ filterForm.order_by }}
+                    <button type="submit">Submit</button>
                 </label>
             </form>
 
@@ -33,16 +37,130 @@
                 <input type="checkbox"/>
                 <div class="collapse-title flex pr-[1rem] md:pr-0">
                     <i class="fa-solid fa-chevron-right text-base-200 text-2xl h-[100%] self-center"></i>
-                    <label class="text-base-200 text-2xl text-nowrap m-[8px]">Tag Name</label>
+                    <label class="text-base-200 text-2xl text-nowrap m-[8px]">1AHIT</label>
                     <div class="bg-base-200 h-[3px] w-[100%] self-center"></div>
                 </div>
-                <div class="collapse-content text-base-200">PUT CONTENT HERE</div>
+                <div class="collapse-content text-base-200">
+                {% for post in data %}
+                    {% if post.main_Tag == "1" %}
+                        <div>
+                            <div>{{post.titel}}</div>
+                            <a href="firstview/{{post.pk}}"><img src="{{post.image_file.url }}" class="postPic" key="{{post.pk}}" posted="{{post.uploaded_by}}"></a>
+                            <div>
+                                {{post.uploaded_by}}
+                                {{post.uploaded_at}}
+                                Aufrufe:{{post.views}} 
+                                Likes:{{post.likes}}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
             </div>
 
+            <div tabindex="0" class="w-[100%] collapse well">
+                <input type="checkbox"/>
+                <div class="collapse-title flex pr-[1rem] md:pr-0">
+                    <i class="fa-solid fa-chevron-right text-base-200 text-2xl h-[100%] self-center"></i>
+                    <label class="text-base-200 text-2xl text-nowrap m-[8px]">2AHIT</label>
+                    <div class="bg-base-200 h-[3px] w-[100%] self-center"></div>
+                </div>
+                <div class="collapse-content text-base-200">
+                {% for post in data %}
+                    {% if post.main_Tag == "2" %}
+                        <div>
+                            <div>{{post.titel}}</div>
+                            <a href="firstview/{{post.pk}}"><img src="{{post.image_file.url }}" class="postPic" key="{{post.pk}}" posted="{{post.uploaded_by}}"></a>
+                            <div>
+                                {{post.uploaded_by}}
+                                {{post.uploaded_at}}
+                                Aufrufe:{{post.views}} 
+                                Likes:{{post.likes}}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            </div>
+
+            <div tabindex="0" class="w-[100%] collapse well">
+                <input type="checkbox"/>
+                <div class="collapse-title flex pr-[1rem] md:pr-0">
+                    <i class="fa-solid fa-chevron-right text-base-200 text-2xl h-[100%] self-center"></i>
+                    <label class="text-base-200 text-2xl text-nowrap m-[8px]">3AHIT</label>
+                    <div class="bg-base-200 h-[3px] w-[100%] self-center"></div>
+                </div>
+                <div class="collapse-content text-base-200">
+                {% for post in data %}
+                    {% if post.main_Tag == "3" %}
+                        <div>
+                            <div>{{post.titel}}</div>
+                            <a href="firstview/{{post.pk}}"><img src="{{post.image_file.url }}" class="postPic" key="{{post.pk}}" posted="{{post.uploaded_by}}"></a>
+                            <div>
+                                {{post.uploaded_by}}
+                                {{post.uploaded_at}}
+                                Aufrufe:{{post.views}} 
+                                Likes:{{post.likes}}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            </div>
+
+            <div tabindex="0" class="w-[100%] collapse well">
+                <input type="checkbox"/>
+                <div class="collapse-title flex pr-[1rem] md:pr-0">
+                    <i class="fa-solid fa-chevron-right text-base-200 text-2xl h-[100%] self-center"></i>
+                    <label class="text-base-200 text-2xl text-nowrap m-[8px]">4AHIT</label>
+                    <div class="bg-base-200 h-[3px] w-[100%] self-center"></div>
+                </div>
+                <div class="collapse-content text-base-200">
+                {% for post in data %}
+                    {% if post.main_Tag == "4" %}
+                        <div>
+                            <div>{{post.titel}}</div>
+                            <a href="firstview/{{post.pk}}"><img src="{{post.image_file.url }}" class="postPic" key="{{post.pk}}" posted="{{post.uploaded_by}}"></a>
+                            <div>
+                                {{post.uploaded_by}}
+                                {{post.uploaded_at}}
+                                Aufrufe:{{post.views}} 
+                                Likes:{{post.likes}}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            </div>
+
+            <div tabindex="0" class="w-[100%] collapse well">
+                <input type="checkbox"/>
+                <div class="collapse-title flex pr-[1rem] md:pr-0">
+                    <i class="fa-solid fa-chevron-right text-base-200 text-2xl h-[100%] self-center"></i>
+                    <label class="text-base-200 text-2xl text-nowrap m-[8px]">5AHIT</label>
+                    <div class="bg-base-200 h-[3px] w-[100%] self-center"></div>
+                </div>
+                <div class="collapse-content text-base-200">
+                {% for post in data %}
+                    {% if post.main_Tag == "4" %}
+                        <div>
+                            <div>{{post.titel}}</div>
+                            <a href="firstview/{{post.pk}}"><img src="{{post.image_file.url }}" class="postPic" key="{{post.pk}}" posted="{{post.uploaded_by}}"></a>
+                            <div>
+                                {{post.uploaded_by}}
+                                {{post.uploaded_at}}
+                                Aufrufe:{{post.views}} 
+                                Likes:{{post.likes}}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            </div>
         </main>
     </main>
 
-    <main class="flex font-roboto justify-center w-[100%] relative">
+    <main class="flex font-roboto justify-center w-[100%] relative hidden">
         <div class="w-[75%] aspect-square bg-secondary pointer-events-none mt-7 relative sm:w-auto sm:h-[20%]">
             <input type="file" class="w-[100%] opacity-0 aspect-square bg-accent pointer-events-auto relative"/>
             <div class="flex w-[100%] h-[100%] top-0 justify-center items-center flex-col absolute">
@@ -52,49 +170,6 @@
         </div>
     </main>
     <npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch -->
-    < <section class="flex-container">
-        <div style="width: 100%;">
-            <header>
-                <div>
-                    <div id="hdepartment">IT</div>
-                    <div id="hhamburger">
-                        <i class="fa-solid fa-bars"></i>
-                    </div>
-                </div>
-                <div id="hheaderbar"></div>
-            </header>
-
-            <div id="body">
-                <form action="filter" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {{ filterForm.as_p }}
-                    <button type="submit">Upload</button>
-                </form>
-                {% for post in data %}
-                <div>
-                    <div>{{post.titel}}</div>
-                    <img src="{{post.image_file.url }}" class="postPic" key="{{post.pk}}" posted="{{post.uploaded_by}}">
-                    <div>
-                        {{post.uploaded_by}}
-                        {{post.uploaded_at}}
-                        {{post.main_Tag}}AHIT
-                    </div>
-                    <a href="delete/{{post.pk}}">Delete</a>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-        <div id="sidebar">
-            <button id="backButton">X</button>
-            <button id="uploadButton"></button>
-
-            <label>DarkMode</label>
-            <input type="checkbox" id="DarkLightModeToggle">
-            <label>LightMode</label>
-
-        </div>
-    </section>
-
     <div id="form-container">
         <form action="upload" method="post" enctype="multipart/form-data">
             {% csrf_token %}
@@ -103,14 +178,32 @@
         </form>
     </div>
     </div>
-
+    {% endif %}
+    {% if post %}
     <div id="view-container">
-        
+        <a href="/home">Back</a>
+        <div>{{post.titel}}</div>
+        <img src="{{post.image_file.url }}" class="postPic" key="{{post.pk}}" posted="{{post.uploaded_by}}">
+        <div>
+            {{post.uploaded_by}}
+            {{post.uploaded_at}}
+            Aufrufe:{{post.views}} 
+            Likes:{{post.likes}}
+        </div>
+        <div>
+            {{post.Description}}
+        </div>
+        <a href="/home/like/{{post.pk}}/0">Like</a>
+        <a href="/home/like/{{post.pk}}/1">Dislike</a>
+        {% if user == post.uploaded_by %}
+        <a href="/home/delete/{{post.pk}}">Delete</a>
+        {% endif %}
     </div>
     <form action="delete" method="post" id="deleteForm" enctype="multipart/form-data" style="display: none;">
         {% csrf_token %}
         <button type="submit">Delete</button>
     </form>
+    {% endif %}
 
     <div id="user" user="{{ user }}" style="display: none;"></div>
 </body>
