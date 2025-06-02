@@ -15,11 +15,36 @@ def home(request):
   users = User.objects.all()
   return render(request, 'home.html', {'user':user,'form': form,'filterForm':filterForm,'data':data,'users':users})
 
+def filteredView(request):
+  form = FilterForm(request.POST, request.FILES)
+  user  = User.objects.get(pk=request.session.get('user',None))
+  
+  print(form.data.get("order_by"))
+  if form.data.get("order_by") == '1':
+    data = Post.objects.filter(titel__icontains=form.data.get("titel")).order_by('uploaded_at')
+  elif form.data.get("order_by") == '2':
+    data = Post.objects.filter(titel__icontains=form.data.get("titel")).order_by('-uploaded_at')
+  elif form.data.get("order_by") == '3':
+    data = Post.objects.filter(titel__icontains=form.data.get("titel")).order_by('views')
+  elif form.data.get("order_by") == '4':
+    data = Post.objects.filter(titel__icontains=form.data.get("titel")).order_by('likes')
+  elif form.data.get("order_by") == '5':
+    data = Post.objects.filter(titel__icontains=form.data.get("titel"),uploaded_by=user).order_by('uploaded_at')
+  else:
+    data  = Post.objects.all().order_by('uploaded_at')
+
+  form = PostForm()
+  filterForm = FilterForm()
+  users = User.objects.all()
+  return render(request, 'home.html', {'form': form,'filterForm':filterForm,'data':data,'user':user,'users':users})
+
 def uploadPost(request):
   form = PostForm(request.POST,request.FILES)
   if form.is_valid():
     post = form.save(commit=False)
     user = User.objects.get(pk=request.session.get('user',None))
+    post.likes = 0
+    post.views = 0
     post.uploaded_by = user
     post.uploaded_at = timezone.now()
     form.save()
@@ -30,16 +55,16 @@ def deletePost(request,pk):
   post.delete()
   return redirect('/home')
 
-def filteredView(request):
-  form = FilterForm(request.POST, request.FILES)
-  print(form.data.get("order_by"))
-  if(form.data.get("order_by") == '2'):
-    data = Post.objects.filter(titel__icontains=form.data.get("titel")).order_by('-uploaded_at')
+def likePost(request,pk,like):
+  post = get_object_or_404(Post, pk=pk)
+  if like:
+    post.likes = post.likes+1
   else:
-    data = Post.objects.filter(titel__icontains=form.data.get("titel")).order_by('uploaded_at')
-  form = PostForm()
-  filterForm = FilterForm()
-  data  = Post.objects.all()
-  users = User.objects.all()
-  user  = User.objects.get(pk=request.session.get('user',None))
-  return render(request, 'home.html', {'form': form,'filterForm':filterForm,'data':data,'user':user,'users':users})
+    post.likes = post.likes-1
+  return redirect("/view/"+pk)
+
+def viewPost(request,pk):
+  post = get_object_or_404(Post, pk=pk)
+  post.views = post.views+1
+  user = User.objects.get(pk=request.session.get('user',None))
+  return render(request, 'view.html',{'user':user,'post':post})

@@ -51,59 +51,6 @@
             </div>
         </div>
     </main>
-    <npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch -->
-    < <section class="flex-container">
-        <div style="width: 100%;">
-            <header>
-                <div>
-                    <div id="hdepartment">IT</div>
-                    <div id="hhamburger">
-                        <i class="fa-solid fa-bars"></i>
-                    </div>
-                </div>
-                <div id="hheaderbar"></div>
-            </header>
-
-            <div id="body">
-                <form action="filter" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    {{ filterForm.as_p }}
-                    <button type="submit">Upload</button>
-                </form>
-                {% for post in data %}
-                <div>
-                    <div>{{post.titel}}</div>
-                    <img src="{{post.image_file.url }}" class="postPic" key="{{post.pk}}" posted="{{post.uploaded_by}}">
-                    <div>
-                        {{post.uploaded_by}}
-                        {{post.uploaded_at}}
-                        {{post.main_Tag}}AHIT
-                    </div>
-                    <a href="delete/{{post.pk}}">Delete</a>
-                </div>
-                {% endfor %}
-            </div>
-        </div>
-        <div id="sidebar">
-            <button id="backButton">X</button>
-            <button id="uploadButton"></button>
-
-            <label>DarkMode</label>
-            <input type="checkbox" id="DarkLightModeToggle">
-            <label>LightMode</label>
-
-        </div>
-    </section>
-
-    <div id="form-container">
-        <form action="upload" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Upload</button>
-        </form>
-    </div>
-    </div>
-
     <div id="view-container">
         
     </div>
@@ -114,8 +61,6 @@
 
     <div id="user" user="{{ user }}" style="display: none;"></div>
 </body>
-{% load static %}
-<script src="{% static 'home/js/home.js' %}"></script>
 {% load static %}
 <script src="{% static 'home/js/solid.js' %}"></script>
 {% load static %}
