@@ -161,7 +161,7 @@
 
     <main class="w-[100%] flex justify-center">
         <main class="flex font-roboto justify-center w-auto relative flex-wrap lg:justify-self-center">
-            <form class="w-[100%] flex justify-center" action="upload" method="post" enctype="multipart/form-data">
+            <form class="w-[100%] block justify-center" action="upload" method="post" enctype="multipart/form-data">
             {% csrf_token %}
                 <div class="w-[75%] aspect-square bg-secondary pointer-events-none mt-7 relative sm:w-[50%] md:w-[35%] lg:w-[25%]">
                     {{form.image_file}}

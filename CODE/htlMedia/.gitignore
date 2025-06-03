@@ -2,4 +2,3 @@ __pycache__/
 pyvenv.cfg
 .env
 images/
-Lib/
