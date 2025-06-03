@@ -39,17 +39,142 @@
                     <label class="text-base-200 text-2xl text-nowrap m-[8px]">1AHIT</label>
                     <div class="bg-base-200 h-[3px] w-[100%] self-center"></div>
                 </div>
-                <div class="collapse-content text-base-200">
+                <div class="collapse-content text-base-200 font-roboto flex overflow-scroll">
+                    <!-- post(s) start here -->
+                        <div class="ml-2 mr-2 w-[85%] min-w-[70%] sm:min-w-[50%] sm:max-w-[20vw] xl:min-w-[40%] h-100">
+                            <a href="firstview/{{post.pk}}"><img src="{{post.image_file.url }}" class="postPic" key="{{post.pk}}" posted="{{post.uploaded_by}}"></a>
+                            
+                            <div class="card bg-base-100 shadow-sm border-base-200 border-[2px] h-[100%] w-[100%]">
+                                <figure class="h-[65%]">
+                                {% load static %}
+                                <img src="{% static './home/methv3.png' %}" alt="Post Image" />
+                                </figure>
+                                <div class="card-body text-lg">
+                                <div>
+                                    {{post.uploaded_by}}
+                                    <div class="text-sm font-bold">Meth Joseph Stalin</div>
+                                    <div class="font-normal">{{post.titel}} Very Cool Picture of Meth and Stalin</div>
+                                    
+                                    <!-- Fixed Flex Container (now wraps ALL icon groups) -->
+                                    <div class="block w-[100%] justify-evenly items-center text-base md:flex">
+                                        <!-- date -->
+                                        <div class="flex align-middle items-center">
+                                            <i class="fas fa-regular fa-calendar text-2xl align-middle text-secondary line"></i>
+                                            <div class="ml-[5px]">20.12.2001</div>
+                                        </div>
+                                        
+                                        <!-- views -->
+                                        <div class="flex align-middle items-center">
+                                            <i class="fas fa-regular fa-eye text-secondary"></i>
+                                            <span class="ml-[5px]">{{post.views}}155</span>
+                                        </div>
+                                        
+                                        <!-- likes -->
+                                        <div class="flex align-middle items-center">                                    
+                                            <i class="fas fa-regular fa-heart text-secondary"></i>
+                                            <span class="ml-[5px]">{{post.likes}}57</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ml-2 mr-2 w-[85%] min-w-[70%] sm:min-w-[50%] sm:max-w-[20vw] xl:min-w-[40%] h-100">
+                            <a href="firstview/{{post.pk}}"><img src="{{post.image_file.url }}" class="postPic" key="{{post.pk}}" posted="{{post.uploaded_by}}"></a>
+                            
+                            <div class="card bg-base-100 shadow-sm border-base-200 border-[2px] h-[100%] w-[100%]">
+                                <figure class="h-[65%]">
+                                {% load static %}
+                                <img src="{% static './home/240ed297-8008-4cff-ba97-8dd3cc11b817-4039220855.jpg' %}" alt="Post Image" />
+                                </figure>
+                                <div class="card-body text-lg">
+                                <div>
+                                    {{post.uploaded_by}}
+                                    <div class="text-sm font-bold">cantthinkofaname</div>
+                                    <div class="font-normal">{{post.titel}} Extremely cool wizardry logo</div>
+                                    
+                                    <!-- Fixed Flex Container (now wraps ALL icon groups) -->
+                                    <div class="block w-[100%] justify-evenly items-center text-base md:flex">
+                                        <!-- date -->
+                                        <div class="flex align-middle items-center">
+                                            <i class="fas fa-regular fa-calendar text-2xl align-middle text-secondary line"></i>
+                                            <div class="ml-[5px]">12.12.1992</div>
+                                        </div>
+                                        
+                                        <!-- views -->
+                                        <div class="flex align-middle items-center">
+                                            <i class="fas fa-regular fa-eye text-secondary"></i>
+                                            <span class="ml-[5px]">666</span>
+                                        </div>
+                                        
+                                        <!-- likes -->
+                                        <div class="flex align-middle items-center">                                    
+                                            <i class="fas fa-regular fa-heart text-secondary"></i>
+                                            <span class="ml-[5px]">665</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+                                                <div class="ml-2 mr-2 w-[85%] min-w-[70%] sm:min-w-[50%] sm:max-w-[20vw] xl:min-w-[40%] h-100">
+                            <a href="firstview/{{post.pk}}"><img src="{{post.image_file.url }}" class="postPic" key="{{post.pk}}" posted="{{post.uploaded_by}}"></a>
+                            
+                            <div class="card bg-base-100 shadow-sm border-base-200 border-[2px] h-[100%] w-[100%]">
+                                <figure class="h-[65%]">
+                                {% load static %}
+                                <img src="{% static './home/Screenshot 2024-12-22 125528.png' %}" alt="Post Image" />
+                                </figure>
+                                <div class="card-body text-lg">
+                                <div>
+                                    {{post.uploaded_by}}
+                                    <div class="text-sm font-bold">CoolUserVeryCringe</div>
+                                    <div class="font-normal">{{post.titel}} Random Screenshot of my screen (no shit)</div>
+                                    
+                                    <!-- Fixed Flex Container (now wraps ALL icon groups) -->
+                                    <div class="block w-[100%] justify-evenly items-center text-base md:flex">
+                                        <!-- date -->
+                                        <div class="flex align-middle items-center">
+                                            <i class="fas fa-regular fa-calendar text-2xl align-middle text-secondary line"></i>
+                                            <div class="ml-[5px]">20.12.2001</div>
+                                        </div>
+                                        
+                                        <!-- views -->
+                                        <div class="flex align-middle items-center">
+                                            <i class="fas fa-regular fa-eye text-secondary"></i>
+                                            <span class="ml-[5px]">45</span>
+                                        </div>
+                                        
+                                        <!-- likes -->
+                                        <div class="flex align-middle items-center">                                    
+                                            <i class="fas fa-regular fa-heart text-secondary"></i>
+                                            <span class="ml-[5px]">12</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        </div>
+                    </div>
                 {% for post in data %}
                     {% if post.main_Tag == "1" %}
                         <div>
-                            <div>{{post.titel}}</div>
+                            <div>{{post.titel}} Post Title</div>
                             <a href="firstview/{{post.pk}}"><img src="{{post.image_file.url }}" class="postPic" key="{{post.pk}}" posted="{{post.uploaded_by}}"></a>
                             <div>
                                 {{post.uploaded_by}}
+                                <div>Uploader Name</div>
                                 {{post.uploaded_at}}
+                                <div>Upload Date</div>
                                 Aufrufe:{{post.views}}
+                                <div>Upload Views</div>
                                 Likes:{{post.likes}}
+                                <div>Upload Likes</div>
                             </div>
                         </div>
                     {% endif %}
