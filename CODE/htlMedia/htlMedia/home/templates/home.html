@@ -31,6 +31,8 @@
                     <button type="submit">Submit</button>
                 </label>
             </form>
+            <!-- upload page button -->
+            <div class="bg-primary absolute bottom-0 right-0 mr-[5%] mb-[5%] aspect-square rounded-full h-[10%] flex justify-center items-center lg:w-[5rem] lg:before:content-['Uplad image']"><i class="fa-solid fa-plus text-4xl text-base-content"></i></div>
 
             <div tabindex="0" class="w-[100%] collapse well">
                 <input type="checkbox"/>
@@ -316,7 +318,7 @@
             <i class="fa-solid fa-xmark absolute right-0 top-0 text-6xl mr-3" onclick="closePostView()"></i>
             <section class="flex w-[100%] justify-center 2xl:ml-7">
                 {% load static %}
-                <img src="{% static './home/methv3.png' %}" class="sm:w-[80%]">
+                <img src="{% static './home/gallery.png' %}" class="sm:w-[80%]">
                 <!-- <img src="{{post.image_file.url }}" class="postPic sm:w-[80%]" key="{{post.pk}}" posted="{{post.uploaded_by}}"> uncomment to load from server-->
             </section>
             <section class="text-xl flex justify-center w-[100%] mt-7 2xl:ml-7">
