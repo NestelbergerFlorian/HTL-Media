@@ -8,23 +8,27 @@
     <title>HTL Media</title>
 </head>
 <body class="text-base-content">
+    
     <header class="bg-base-100 w-[100%]">
         <div class="flex justify-between w-[100%]">
             <div class="text-base-content font-roboto font-bold text-6xl m-4">IT</div>
-            <div class="self-right text-base-content">
+            <div class="self-right text-base-content" id="hhamburger">
                 <i class="fa-solid fa-bars text-6xl m-4"></i>
             </div>
         </div>
         <span class="bg-accent block w-[100%] h-[3px]"></span>
     </header>
 
-    <main class="flex font-roboto justify-center hidden">
+    {% if post == none %}
+    <main class="flex font-roboto justify-center">
         <main class="w-[100%] md:w-[90%] lg:w-[70%]">
-            <form class="w-[100%] text-base-content flex justify-center">
+            <form class="w-[100%] text-base-content flex justify-center" action="filter" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
                 <label class="input !shadow-none border-t-0 border-l-0 border-r-0 border-b-3 w-[100%] focus:border-primary focus:shadow-none md:w-[90%] lg:w-[70%]">
                     <i class="fa-solid fa-magnifying-glass align-middle text-2xl"></i>
-                    <input type="text" class="w-[100%] text-2xl input shadow-none focus:ring-0" required placeholder="Search" />
-                    <i class="fa-solid fa-filter align-middle text-2xl"></i>
+                    {{   filterForm.titel  }}
+                    {{ filterForm.order_by }}
+                    <button type="submit">Submit</button>
                 </label>
             </form>
 
@@ -32,121 +36,179 @@
                 <input type="checkbox"/>
                 <div class="collapse-title flex pr-[1rem] md:pr-0">
                     <i class="fa-solid fa-chevron-right text-base-200 text-2xl h-[100%] self-center"></i>
-                    <label class="text-base-200 text-2xl text-nowrap m-[8px]">Tag Name</label>
+                    <label class="text-base-200 text-2xl text-nowrap m-[8px]">1AHIT</label>
                     <div class="bg-base-200 h-[3px] w-[100%] self-center"></div>
                 </div>
-                <div class="collapse-content text-base-200">PUT CONTENT HERE</div>
+                <div class="collapse-content text-base-200">
+                {% for post in data %}
+                    {% if post.main_Tag == "1" %}
+                        <div>
+                            <div>{{post.titel}}</div>
+                            <a href="firstview/{{post.pk}}"><img src="{{post.image_file.url }}" class="postPic" key="{{post.pk}}" posted="{{post.uploaded_by}}"></a>
+                            <div>
+                                {{post.uploaded_by}}
+                                {{post.uploaded_at}}
+                                Aufrufe:{{post.views}}
+                                Likes:{{post.likes}}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
             </div>
 
+            <div tabindex="0" class="w-[100%] collapse well">
+                <input type="checkbox"/>
+                <div class="collapse-title flex pr-[1rem] md:pr-0">
+                    <i class="fa-solid fa-chevron-right text-base-200 text-2xl h-[100%] self-center"></i>
+                    <label class="text-base-200 text-2xl text-nowrap m-[8px]">2AHIT</label>
+                    <div class="bg-base-200 h-[3px] w-[100%] self-center"></div>
+                </div>
+                <div class="collapse-content text-base-200">
+                {% for post in data %}
+                    {% if post.main_Tag == "2" %}
+                        <div>
+                            <div>{{post.titel}}</div>
+                            <a href="firstview/{{post.pk}}"><img src="{{post.image_file.url }}" class="postPic" key="{{post.pk}}" posted="{{post.uploaded_by}}"></a>
+                            <div>
+                                {{post.uploaded_by}}
+                                {{post.uploaded_at}}
+                                Aufrufe:{{post.views}} 
+                                Likes:{{post.likes}}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            </div>
+
+            <div tabindex="0" class="w-[100%] collapse well">
+                <input type="checkbox"/>
+                <div class="collapse-title flex pr-[1rem] md:pr-0">
+                    <i class="fa-solid fa-chevron-right text-base-200 text-2xl h-[100%] self-center"></i>
+                    <label class="text-base-200 text-2xl text-nowrap m-[8px]">3AHIT</label>
+                    <div class="bg-base-200 h-[3px] w-[100%] self-center"></div>
+                </div>
+                <div class="collapse-content text-base-200">
+                {% for post in data %}
+                    {% if post.main_Tag == "3" %}
+                        <div>
+                            <div>{{post.titel}}</div>
+                            <a href="firstview/{{post.pk}}"><img src="{{post.image_file.url }}" class="postPic" key="{{post.pk}}" posted="{{post.uploaded_by}}"></a>
+                            <div>
+                                {{post.uploaded_by}}
+                                {{post.uploaded_at}}
+                                Aufrufe:{{post.views}} 
+                                Likes:{{post.likes}}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            </div>
+
+            <div tabindex="0" class="w-[100%] collapse well">
+                <input type="checkbox"/>
+                <div class="collapse-title flex pr-[1rem] md:pr-0">
+                    <i class="fa-solid fa-chevron-right text-base-200 text-2xl h-[100%] self-center"></i>
+                    <label class="text-base-200 text-2xl text-nowrap m-[8px]">4AHIT</label>
+                    <div class="bg-base-200 h-[3px] w-[100%] self-center"></div>
+                </div>
+                <div class="collapse-content text-base-200">
+                {% for post in data %}
+                    {% if post.main_Tag == "4" %}
+                        <div>
+                            <div>{{post.titel}}</div>
+                            <a href="firstview/{{post.pk}}"><img src="{{post.image_file.url }}" class="postPic" key="{{post.pk}}" posted="{{post.uploaded_by}}"></a>
+                            <div>
+                                {{post.uploaded_by}}
+                                {{post.uploaded_at}}
+                                Aufrufe:{{post.views}} 
+                                Likes:{{post.likes}}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            </div>
+
+            <div tabindex="0" class="w-[100%] collapse well">
+                <input type="checkbox"/>
+                <div class="collapse-title flex pr-[1rem] md:pr-0">
+                    <i class="fa-solid fa-chevron-right text-base-200 text-2xl h-[100%] self-center"></i>
+                    <label class="text-base-200 text-2xl text-nowrap m-[8px]">5AHIT</label>
+                    <div class="bg-base-200 h-[3px] w-[100%] self-center"></div>
+                </div>
+                <div class="collapse-content text-base-200">
+                {% for post in data %}
+                    {% if post.main_Tag == "4" %}
+                        <div>
+                            <div>{{post.titel}}</div>
+                            <a href="firstview/{{post.pk}}"><img src="{{post.image_file.url }}" class="postPic" key="{{post.pk}}" posted="{{post.uploaded_by}}"></a>
+                            <div>
+                                {{post.uploaded_by}}
+                                {{post.uploaded_at}}
+                                Aufrufe:{{post.views}} 
+                                Likes:{{post.total_likes}}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            </div>
         </main>
     </main>
 
     <main class="w-[100%] flex justify-center hidden">
-        <main class="flex font-roboto justify-center w-auto relative flex-wrap lg:justify-self-center">
-            <div class="w-[75%] aspect-square bg-secondary pointer-events-none mt-7 relative sm:w-[50%] md:w-[35%] lg:w-[25%]">
-                <input type="file" class="w-[100%] opacity-0 aspect-square bg-accent pointer-events-auto relative"/>
-                <div class="flex w-[100%] h-[100%] top-0 justify-center items-center flex-col absolute">
-                    <i class="fa-solid fa-file-import text-6xl mb-[15px]"></i>
-                    <span class="font-bold before:content-['Tap'] lg:before:content-['Click']"> to upload file</span>
-                </div>
-            </div><br>
-            <form class="w-[100%] flex justify-center">
-                <div class="w-[75%] sm:w-[50%] md:w-[35%] lg:w-[25%]">
-                    <input type="text" class="text-base-content text-xl w-[100%] my-4 border-b-2 border-base-200 opacity-50 focus:border-b-2 focus:border-primary focus:opacity-100 focus:outline-none focus:shadow-lg focus:shadow-secondary" required placeholder="Title *" name="title"/>
-                    <textarea class="text-base-content text-xl w-[100%] my-4 border-b-2 border-base-200 opacity-50 focus:border-b-2 focus:border-primary focus:opacity-100 focus:outline-none focus:shadow-lg focus:shadow-secondary" required placeholder="Description *" name="description"></textarea>
-                    <input type="text" class="text-base-content text-xl w-[100%] my-4 border-b-2 border-base-200 opacity-50 focus:border-b-2 focus:border-primary focus:opacity-100 focus:outline-none focus:shadow-lg focus:shadow-secondary" required placeholder="Primary Tag *" name="ptag"/>
-                    <input type="text" class="text-base-content text-xl w-[100%] my-4 border-b-2 border-base-200 opacity-50 focus:border-b-2 focus:border-primary focus:opacity-100 focus:outline-none focus:shadow-lg focus:shadow-secondary" placeholder="Secondary Tag" name="stag"/>
-                    <div class="w-[100%] h-fit flex justify-end"><button type="submit" class="btn btn-primary rounded-2xl text-lg px-8 mt-12 border-none shadow-none hover:shadow-lg hover:shadow-secondary"><i class="fa-solid fa-upload"></i> Upload</button></div>
-                </div>
-            </form>
-        </main>
-    </main>
-
-    <main class="block font-roboto text-base-content mt-7 w-[100%] 2xl:flex 2xl:justify-center">
-        <section class="flex w-[100%] justify-center 2xl:ml-7">
-            {% load static %}
-            <img src="{% static './home/registeel.png' %}" class="sm:w-[80%]">
-        </section>
-        <section class="text-xl flex justify-center w-[100%] mt-7 2xl:ml-7">
-            <!-- medium size -->
-            <table class="hidden sm:table 2xl:hidden border-collapse sm:w-[80%] border-secondary border-[2px]">
-                <tr>
-                    <td class="p-1 border-b border-r border-secondary">
-                        <div class="font-bold">Title</div>
-                        <div class="text-lg">Load Title here</div>
-                    </td>
-                    <td class="p-2 border-b border-secondary">
-                        <div class="font-bold">Primary Tag</div>
-                        <div class="text-lg">Load PTag here</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="p-1 border-r border-secondary">
-                        <div class="font-bold">Description</div>
-                        <div class="text-lg">Load Description here</div>
-                    </td>
-                    <td class="p-2">
-                        <div class="font-bold">Secondary Tag(s)</div>
-                        <div class="text-lg">Load STags here</div>
-                    </td>
-                </tr>
-            </table>
-            <!-- mobile and desktop -->
-            <div class="w-[85%] sm:hidden 2xl:block space-y-4 2xl:w-[75%]">
-                <div class="border-secondary border-[2px] p-2">
-                    <div class="font-bold">Title</div>
-                    <div class="text-lg">Load Title here</div>
-                </div>
-                <div class="border-secondary border-[2px] p-2">
-                    <div class="font-bold">Description</div>
-                    <div class="text-lg">Load Description here</div>
-                </div>
-                <div class="border-secondary border-[2px] p-2">
-                    <div class="font-bold">Primary Tag</div>
-                    <div class="text-lg">Load PTag here</div>
-                </div>
-                <div class="border-secondary border-[2px] p-2">
-                    <div class="font-bold">Secondary Tag(s)</div>
-                    <div class="text-lg">Load STags here</div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- npx @tailwindcss/cli -i ./src/input.css -o ./src/output.css --watch -->
-    <!-- <section class="flex-container">
-        <div style="width: 100%;">
-            <header>
-                <div>
-                    <div id="hdepartment">IT</div>
-                    <div id="hhamburger">
-                        <i class="fa-solid fa-bars"></i>
+        <form class="w-[100%] flex justify-center font-roboto relative flex-wrap lg:justify-self-center sm:w-[50%] md:w-[35%] lg:w-[25%]" action="upload" method="post" enctype="multipart/form-data">
+            <div class="w-[75%]">
+                {% csrf_token %}
+                <div class="aspect-square bg-secondary pointer-events-none mt-7 relative">
+                    {{form.image_file}}
+                    <div class="flex w-[100%] h-[100%] top-0 justify-center items-center flex-col absolute">
+                        <i class="fa-solid fa-file-import text-6xl mb-[15px]"></i>
+                        <span class="font-bold before:content-['Tap'] lg:before:content-['Click']"> to upload file</span>
                     </div>
                 </div>
-                <div id="hheaderbar"></div>
-            </header>
-
-            <div id="body">
+            
+                {% csrf_token %}
+                <div>
+                    {{form.titel}}
+                    <div>Form Title</div>
+                    {{form.Description}}
+                    <div>Form Description</div>
+                    {{form.main_Tag}}
+                    <div>From Tag</div>
+                    <div class="w-[100%] h-fit flex justify-end">
+                    <button type="submit" class="btn btn-primary rounded-2xl text-lg px-8 mt-12 border-none shadow-none hover:shadow-lg hover:shadow-secondary"><i class="fa-solid fa-upload"></i> Upload</button></div>
+                </div>
             </div>
-        </div>
-        <div id="sidebar">
-            <button id="backButton">X</button>
-            <button id="uploadButton"></button>
-
-            <label>DarkMode</label>
-            <input type="checkbox" id="DarkLightModeToggle">
-            <label>LightMode</label>
-
-        </div>
-    </section>
-
-    <div id="form-container">
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Upload</button>
         </form>
-    </div> -->
+    </main>
+
+    {% endif %}
+    {% if post %}
+        <div id="view-container">
+            <a href="/home">Back</a>
+            <div>{{post.titel}}</div>
+            <img src="{{post.image_file.url }}" class="postPic" key="{{post.pk}}" posted="{{post.uploaded_by}}">
+            <div>
+                {{post.uploaded_by}}
+                {{post.uploaded_at}}
+                Aufrufe:{{post.views}} 
+                Likes:{{post.total_likes}}
+            </div>
+            <div>
+                {{post.Description}}
+            </div>
+            <a href="/home/like/{{post.pk}}">Like</a>
+            {% if user == post.uploaded_by %}
+            <a href="/home/delete/{{post.pk}}">Delete</a>
+            {% endif %}
+        </div>
+    {% endif %}
+
+    <div id="user" user="{{ user }}" style="display: none;"></div>
 </body>
 {% load static %}
 <script src="{% static 'home/js/home.js' %}"></script>
