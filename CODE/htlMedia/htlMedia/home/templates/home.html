@@ -13,14 +13,14 @@
         <div class="flex justify-between w-[100%]">
             <div class="text-base-content font-roboto font-bold text-6xl m-4">IT</div>
             <div class="self-right text-base-content" id="hhamburger">
-                <i class="fa-solid fa-bars text-6xl m-4"></i>
+                <i class="fa-solid fa-right-from-bracket rotate-180 text-6xl m-4 hover:text-error" title="Log out"></i>
             </div>
         </div>
         <span class="bg-accent block w-[100%] h-[3px]"></span>
     </header>
 
     {% if post == none %}
-    <main class="flex font-roboto justify-center hidden">
+    <main class="flex font-roboto justify-center">
         <main class="w-[100%] md:w-[90%] lg:w-[70%]">
             <form class="w-[100%] text-base-content flex justify-center" action="filter" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -311,8 +311,9 @@
         </form>
     </main>
 
-        {% if post %}
-        <main class="block font-roboto text-base-content mt-7 w-[100%] 2xl:flex 2xl:justify-center">
+
+        <main id="postview" class="block font-roboto text-base-content mt-7 w-[100%] 2xl:flex 2xl:justify-center relative hidden">
+            <i class="fa-solid fa-xmark absolute right-0 top-0 text-6xl mr-3" onclick="closePostView()"></i>
             <section class="flex w-[100%] justify-center 2xl:ml-7">
                 {% load static %}
                 <img src="{% static './home/methv3.png' %}" class="sm:w-[80%]">
@@ -321,6 +322,18 @@
             <section class="text-xl flex justify-center w-[100%] mt-7 2xl:ml-7">
                 <!-- medium size -->
                 <table class="hidden sm:table 2xl:hidden border-collapse sm:w-[80%] border-secondary border-[2px]">
+                    <tr>
+                        <td colspan="2" class="p-2 border-secondary border-[2px]">
+                            <div class="font-bold">Actions</div>
+                            <div class="text-4xl flex justify-evenly ">
+                                <a href="/home/like/{{post.pk}}" title="Like"><i id="likebtn" class="fas fa-regular fa-heart text-primary" onclick="toggleLikeFilled()"></i>
+                                <a href="" download="{{post.image_file.url}}" title="Download"><i class="fa-solid fa-download text-primary"></i>
+                                {% if user == post.uploaded_by %}
+                                <a href="/home/delete/{{post.pk}}" title="Delete"><i class="fa-solid fa-trash text-primary hover:text-error"></i>
+                                {% endif %}
+                            </div>
+                        </td>
+                    </tr>
                     <tr>
                         <td class="p-1 border-b border-r border-secondary">
                             <div class="font-bold">Title</div>
@@ -423,7 +436,6 @@
                 </div>
             </section>
         </main>
-        {% endif %}
 
 
 

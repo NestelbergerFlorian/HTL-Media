@@ -11,6 +11,10 @@ function toggleLikeFilled(){
     document.querySelector('#likebtn').classList.toggle('fa-heart-circle-check');
 }
 
+function closePostView(){
+    document.querySelector('#postview').classList.add('hidden');
+}
+
 function displaySideBar(display){
     if(display){
         document.getElementById("sidebar").style.display = "flex"
