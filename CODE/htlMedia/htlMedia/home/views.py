@@ -43,7 +43,6 @@ def uploadPost(request):
   if form.is_valid():
     post = form.save(commit=False)
     user = User.objects.get(pk=request.session.get('user',None))
-    post.likes = 0
     post.views = 0
     post.uploaded_by = user
     post.uploaded_at = timezone.now()
