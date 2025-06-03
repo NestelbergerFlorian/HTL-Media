@@ -6,6 +6,11 @@ function backButtonClick() {
     displaySideBar(false);
 }
 
+function toggleLikeFilled(){
+    document.querySelector('#likebtn').classList.toggle('fa-heart');
+    document.querySelector('#likebtn').classList.toggle('fa-heart-circle-check');
+}
+
 function displaySideBar(display){
     if(display){
         document.getElementById("sidebar").style.display = "flex"

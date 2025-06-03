@@ -49,7 +49,7 @@
     --color-secondary: oklch(0.5 0.2418 301.54);
     --color-accent: oklch(0.4 0.203688 306.44);
     --color-accent-content: oklch(12% 0.042 264.695);
-    --color-neutral: #000000;
+    --color-neutral: oklch(70% 0.04 256.788);
     --color-neutral-content: oklch(92% 0.004 286.32);
     --color-info: #FEC210;
     --color-info-content: oklch(29% 0.066 243.157);
