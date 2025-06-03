@@ -20,7 +20,7 @@
     </header>
 
     {% if post == none %}
-    <main class="flex font-roboto justify-center">
+    <main class="flex font-roboto justify-center hidden">
         <main class="w-[100%] md:w-[90%] lg:w-[70%]">
             <form class="w-[100%] text-base-content flex justify-center" action="filter" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -303,6 +303,7 @@
             </div>
         </main>
     </main>
+    {% endif %}
 
     <main class="w-[100%] flex justify-center hidden">
         <form class="w-[100%] flex justify-center font-roboto relative flex-wrap lg:justify-self-center sm:w-[50%] md:w-[35%] lg:w-[25%]" action="upload" method="post" enctype="multipart/form-data">
@@ -330,29 +331,119 @@
             </div>
         </form>
     </main>
-
-    {% endif %}
-    {% if post %}
-        <div id="view-container">
-            <a href="/home">Back</a>
-            <div>{{post.titel}}</div>
-            <img src="{{post.image_file.url }}" class="postPic" key="{{post.pk}}" posted="{{post.uploaded_by}}">
-            <div>
-                {{post.uploaded_by}}
-                {{post.uploaded_at}}
-                Aufrufe:{{post.views}} 
-                Likes:{{post.total_likes}}
-            </div>
-            <div>
-                {{post.Description}}
-            </div>
-            <a href="/home/like/{{post.pk}}">Like</a>
-            {% if user == post.uploaded_by or user.roles == 0 %}
-            <a href="/home/delete/{{post.pk}}">Delete</a>
-            {% endif %}
-        </div>
-    {% endif %}
-
+        {% if post %}
+        <main class="block font-roboto text-base-content mt-7 w-[100%] 2xl:flex 2xl:justify-center">
+            <section class="flex w-[100%] justify-center 2xl:ml-7">
+                {% load static %}
+                <img src="{% static './home/methv3.png' %}" class="sm:w-[80%]">
+                <!-- <img src="{{post.image_file.url }}" class="postPic sm:w-[80%]" key="{{post.pk}}" posted="{{post.uploaded_by}}"> uncomment to load from server-->
+            </section>
+            <section class="text-xl flex justify-center w-[100%] mt-7 2xl:ml-7">
+                <!-- medium size -->
+                <table class="hidden sm:table 2xl:hidden border-collapse sm:w-[80%] border-secondary border-[2px]">
+                    <tr>
+                        <td class="p-1 border-b border-r border-secondary">
+                            <div class="font-bold">Title</div>
+                            <div class="text-lg">{{post.titel}}Load Title here</div>
+                        </td>
+                        <td class="p-2 border-b border-secondary">
+                            <div class="font-bold">Info</div>
+                            <div class="text-lg">                                    
+                                <div class="block w-[100%] justify-evenly items-center text-base md:flex">
+                                    <!-- date -->
+                                    <div class="flex align-middle items-center">
+                                        <i class="fas fa-regular fa-calendar text-2xl align-middle text-secondary line"></i>
+                                        <div class="ml-[5px]">{{post.uploaded_at}}20.12.2001</div>
+                                    </div>
+                                    
+                                    <!-- views -->
+                                    <div class="flex align-middle items-center">
+                                        <i class="fas fa-regular fa-eye text-secondary"></i>
+                                        <span class="ml-[5px]">{{post.views}}155</span>
+                                    </div>
+                                    
+                                    <!-- likes -->
+                                    <div class="flex align-middle items-center">                                    
+                                            <i class="fas fa-regular fa-heart text-secondary"></i>
+                                        <span class="ml-[5px]">{{post.total_likes}}57</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="border-secondary border-[2px] p-2">
+                            <div class="font-bold">Primary Tag</div>
+                            <div class="text-lg">Load PTag here</div>
+                        </td>
+                        <td class="border-secondary border-[2px] p-2">
+                            <div class="font-bold">Posted by</div>
+                            <div class="text-lg">{{post.uploaded_by}}goonking</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="p-1">
+                            <div class="font-bold">Description</div>
+                            <div class="text-lg">{{post.Description}}Load Description here</div>
+                        </td>
+                    </tr>
+                </table>
+                <!-- mobile and desktop -->
+                <div class="w-[85%] sm:hidden 2xl:block space-y-4 2xl:w-[75%]">
+                    <div class="border-secondary border-[2px] p-2">
+                        <div class="font-bold">Title</div>
+                        <div class="text-lg">{{post.titel}}Load Title here</div>
+                    </div>
+                    <div class="border-secondary border-[2px] p-2">
+                        <div class="font-bold">Info</div>
+                            <div class="text-lg">                                    
+                                <div class="block w-[100%] justify-evenly items-center text-base md:flex">
+                                    <!-- date -->
+                                    <div class="flex align-middle items-center">
+                                        <i class="fas fa-regular fa-calendar text-2xl align-middle text-secondary line"></i>
+                                        <div class="ml-[5px]">{{post.uploaded_at}}20.12.2001</div>
+                                    </div>
+                                    
+                                    <!-- views -->
+                                    <div class="flex align-middle items-center">
+                                        <i class="fas fa-regular fa-eye text-secondary"></i>
+                                        <span class="ml-[5px]">{{post.views}}155</span>
+                                    </div>
+                                    
+                                    <!-- likes -->
+                                    <div class="flex align-middle items-center">                                    
+                                        <i class="fas fa-regular fa-heart text-secondary"></i>
+                                        <span class="ml-[5px]">{{post.total_likes}}57</span>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="border-secondary border-[2px] p-2">
+                        <div class="font-bold">Primary Tag</div>
+                        <div class="text-lg">Load PTag here</div>
+                    </div>
+                    <div class="border-secondary border-[2px] p-2">
+                        <div class="font-bold">Posted by</div>
+                        <div class="text-lg">{{post.uploaded_by}}goonking</div>
+                    </div>
+                    <div class="border-secondary border-[2px] p-2">
+                        <div class="font-bold">Description</div>
+                        <div class="text-lg">{{post.Description}}Load Description here</div>
+                    </div>
+                    <div class="p-2 border-secondary border-[2px]">
+                        <div class="font-bold">Actions</div>
+                        <div class="text-4xl flex justify-evenly ">
+                            <a href="/home/like/{{post.pk}}"><i id="likebtn" class="fas fa-regular fa-heart text-primary" onclick="toggleLikeFilled()"></i>
+                            <a href="" download="{{post.image_file.url}}"><i class="fa-solid fa-download text-primary"></i>
+                            {% if user == post.uploaded_by %}
+                            <a href="/home/delete/{{post.pk}}"><i class="fa-solid fa-trash text-primary hover:text-error"></i>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        {% endif %}
     <div id="user" user="{{ user }}" style="display: none;"></div>
 </body>
 {% load static %}
