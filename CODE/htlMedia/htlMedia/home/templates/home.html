@@ -13,13 +13,13 @@
         <div class="flex justify-between w-[100%]">
             <div class="text-base-content font-roboto font-bold text-6xl m-4">IT</div>
             <div class="self-right text-base-content" id="hhamburger">
-                <i class="fa-solid fa-bars text-6xl m-4"></i>
+                <a href="/home/logout"><i class="fa-solid fa-right-from-bracket rotate-180 text-6xl m-4 hover:text-error" title="Log out"></i></a>
             </div>
         </div>
         <span class="bg-accent block w-[100%] h-[3px]"></span>
     </header>
 
-    {% if post == none %}
+    {% if post == none and form == none %}
     <main class="flex font-roboto justify-center">
         <main class="w-[100%] md:w-[90%] lg:w-[70%]">
             <form class="w-[100%] text-base-content flex justify-center" action="filter" method="post" enctype="multipart/form-data">
@@ -31,6 +31,8 @@
                     <button type="submit">Submit</button>
                 </label>
             </form>
+            <!-- upload page button -->
+            <a href="form" class="bg-primary absolute bottom-0 right-0 mr-[5%] mb-[5%] aspect-square rounded-full h-[10%] flex justify-center items-center lg:w-[5rem] lg:before:content-['Uplad image']"><i class="fa-solid fa-plus text-4xl text-base-content"></i></a>
 
             <div tabindex="0" class="w-[100%] collapse well">
                 <input type="checkbox"/>
@@ -305,8 +307,9 @@
     </main>
     {% endif %}
 
+    {% if form %}
     <main class="w-[100%] flex justify-center">
-        <form class="w-[100%] flex justify-center font-roboto relative flex-wrap lg:justify-self-center sm:w-[50%] md:w-[35%] lg:w-[25%]" action="upload" method="post" enctype="multipart/form-data">
+        <form class="w-[100%] flex justify-center font-roboto relative flex-wrap lg:justify-self-center sm:w-[50%] md:w-[35%] lg:w-[25%]" action="/home/upload" method="post" enctype="multipart/form-data">
             <div class="w-[75%]">
                 {% csrf_token %}
                 <div class="aspect-square bg-secondary pointer-events-none mt-7 relative">
@@ -320,73 +323,85 @@
                 {% csrf_token %}
                 <div>
                     {{form.titel}}
-                    <div>Form Title</div>
                     {{form.Description}}
-                    <div>Form Description</div>
                     {{form.main_Tag}}
-                    <div>From Tag</div>
                     <div class="w-[100%] h-fit flex justify-end">
                     <button type="submit" class="btn btn-primary rounded-2xl text-lg px-8 mt-12 border-none shadow-none hover:shadow-lg hover:shadow-secondary"><i class="fa-solid fa-upload"></i> Upload</button></div>
                 </div>
             </div>
         </form>
     </main>
+    {% endif %}
     {% if post %}
-    <main class="block font-roboto text-base-content mt-7 w-[100%] 2xl:flex 2xl:justify-center">
-        <section class="flex w-[100%] justify-center 2xl:ml-7">
-            <img src="{{ post.image_file.url }}" >
-            <!-- <img src="{{post.image_file.url }}" class="postPic sm:w-[80%]" key="{{post.pk}}" posted="{{post.uploaded_by}}"> uncomment to load from server-->
-        </section>
-        <section class="text-xl flex justify-center w-[100%] mt-7 2xl:ml-7">
-            <!-- medium size -->
-            <table class="hidden sm:table 2xl:hidden border-collapse sm:w-[80%] border-secondary border-[2px]">
-                <tr>
-                    <td class="p-1 border-b border-r border-secondary">
-                        <div class="font-bold">Title</div>
-                        <div class="text-lg">{{post.titel}}</div>
-                    </td>
-                    <td class="p-2 border-b border-secondary">
-                        <div class="font-bold">Info</div>
-                        <div class="text-lg">                                    
-                            <div class="block w-[100%] justify-evenly items-center text-base md:flex">
-                                <!-- date -->
-                                <div class="flex align-middle items-center">
-                                    <i class="fas fa-regular fa-calendar text-2xl align-middle text-secondary line"></i>
-                                    <div class="ml-[5px]">{{post.uploaded_at|date:"d M Y"}}</div>
-                                </div>
-                                
-                                <!-- views -->
-                                <div class="flex align-middle items-center">
-                                    <i class="fas fa-regular fa-eye text-secondary"></i>
-                                    <span class="ml-[5px]">{{post.views}}</span>
-                                </div>
-                                
-                                <!-- likes -->
-                                <div class="flex align-middle items-center">                                    
-                                        <i class="fas fa-regular fa-heart text-secondary"></i>
-                                    <span class="ml-[5px]">{{post.total_likes}}</span>
+        <main id="postview" class="block font-roboto text-base-content mt-7 w-[100%] 2xl:flex 2xl:justify-center relative hidden">
+            <a href="/home/"><i class="fa-solid fa-xmark absolute right-0 top-0 text-6xl mr-3"></i></a>
+            <section class="flex w-[100%] justify-center 2xl:ml-7">
+                {% load static %}
+                <img src="{{post.image_file.url }}">
+                <!-- <img src="{{post.image_file.url }}" class="postPic sm:w-[80%]" key="{{post.pk}}" posted="{{post.uploaded_by}}"> uncomment to load from server-->
+            </section>
+            <section class="text-xl flex justify-center w-[100%] mt-7 2xl:ml-7">
+                <!-- medium size -->
+                <table class="hidden sm:table 2xl:hidden border-collapse sm:w-[80%] border-secondary border-[2px]">
+                    <tr>
+                        <td colspan="2" class="p-2 border-secondary border-[2px]">
+                            <div class="font-bold">Actions</div>
+                            <div class="text-4xl flex justify-evenly ">
+                                <a href="/home/like/{{post.pk}}" title="Like"><i id="likebtn" class="fas fa-regular fa-heart text-primary" onclick="toggleLikeFilled()"></i>
+                                <a href="" download="{{post.image_file.url}}" title="Download"><i class="fa-solid fa-download text-primary"></i>
+                                {% if user == post.uploaded_by %}
+                                <a href="/home/delete/{{post.pk}}" title="Delete"><i class="fa-solid fa-trash text-primary hover:text-error"></i>
+                                {% endif %}
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="p-1 border-b border-r border-secondary">
+                            <div class="font-bold">Title</div>
+                            <div class="text-lg">{{post.titel}}</div>
+                        </td>
+                        <td class="p-2 border-b border-secondary">
+                            <div class="font-bold">Info</div>
+                            <div class="text-lg">                                    
+                                <div class="block w-[100%] justify-evenly items-center text-base md:flex">
+                                    <!-- date -->
+                                    <div class="flex align-middle items-center">
+                                        <i class="fas fa-regular fa-calendar text-2xl align-middle text-secondary line"></i>
+                                        <div class="ml-[5px]">{{post.uploaded_at|date:"d M Y"}}</div>
+                                    </div>
+                                    
+                                    <!-- views -->
+                                    <div class="flex align-middle items-center">
+                                        <i class="fas fa-regular fa-eye text-secondary"></i>
+                                        <span class="ml-[5px]">{{post.views}}</span>
+                                    </div>
+                                    
+                                    <!-- likes -->
+                                    <div class="flex align-middle items-center">                                    
+                                            <i class="fas fa-regular fa-heart text-secondary"></i>
+                                        <span class="ml-[5px]">{{post.total_likes}}</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="border-secondary border-[2px] p-2">
-                        <div class="font-bold">Klasse</div>
-                        <div class="text-lg">{{post.main_Tag}}AHIT</div>
-                    </td>
-                    <td class="border-secondary border-[2px] p-2">
-                        <div class="font-bold">Posted by</div>
-                        <div class="text-lg">{{post.uploaded_by.username}}</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="p-1">
-                        <div class="font-bold">Description</div>
-                        <div class="text-lg">{{post.Description}}</div>
-                    </td>
-                </tr>
-            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="border-secondary border-[2px] p-2">
+                            <div class="font-bold">Klasse</div>
+                            <div class="text-lg">{{ post.main_Tag}}AHIT</div>
+                        </td>
+                        <td class="border-secondary border-[2px] p-2">
+                            <div class="font-bold">Posted by</div>
+                            <div class="text-lg">{{post.uploaded_by.username}}</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="p-1">
+                            <div class="font-bold">Description</div>
+                            <div class="text-lg">{{post.Description}}</div>
+                        </td>
+                    </tr>
+                </table>
             <!-- mobile and desktop -->
             <div class="w-[85%] sm:hidden 2xl:block space-y-4 2xl:w-[75%]">
                 <div class="border-secondary border-[2px] p-2">

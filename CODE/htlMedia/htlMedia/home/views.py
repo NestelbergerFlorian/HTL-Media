@@ -9,6 +9,13 @@ from login.models import User
 
 def home(request):
   user = User.objects.get(pk=request.session.get('user',None))
+  filterForm = FilterForm()
+  data = Post.objects.all().order_by('-uploaded_at')
+  users = User.objects.all()
+  return render(request, 'home.html', {'user':user,'filterForm':filterForm,'data':data,'users':users})
+
+def form(request):
+  user = User.objects.get(pk=request.session.get('user',None))
   form = PostForm()
   filterForm = FilterForm()
   data = Post.objects.all().order_by('-uploaded_at')
@@ -16,9 +23,8 @@ def home(request):
   return render(request, 'home.html', {'user':user,'form': form,'filterForm':filterForm,'data':data,'users':users})
 
 def filteredView(request):
-  form = FilterForm(request.POST, request.FILES)
   user  = User.objects.get(pk=request.session.get('user',None))
-  
+  form = FilterForm(request.POST,request.FILES)
   print(form.data.get("order_by"))
   if form.data.get("order_by") == '1':
     data = Post.objects.filter(titel__icontains=form.data.get("titel")).order_by('uploaded_at')
@@ -33,10 +39,9 @@ def filteredView(request):
   else:
     data  = Post.objects.all().order_by('uploaded_at')
 
-  form = PostForm()
   filterForm = FilterForm()
   users = User.objects.all()
-  return render(request, 'home.html', {'form': form,'filterForm':filterForm,'data':data,'user':user,'users':users})
+  return render(request, 'home.html', {'filterForm':filterForm,'data':data,'user':user,'users':users})
 
 def uploadPost(request):
   form = PostForm(request.POST,request.FILES)
@@ -70,11 +75,14 @@ def viewPost(request,pk):
   post.save()
   return redirect("/home/view/"+str(pk))
 
+def logout(request):
+  request.session['user'] = None
+  return redirect("/login")
+
 def postView(request,pk):
   post = get_object_or_404(Post, pk=pk)
   user = User.objects.get(pk=request.session.get('user',None))
-  form = PostForm()
   filterForm = FilterForm()
   data = Post.objects.all().order_by('-uploaded_at')
   users = User.objects.all()
-  return render(request, 'home.html', {'user':user,'form': form,'filterForm':filterForm,'data':data,'users':users,'post':post})
+  return render(request, 'home.html', {'user':user,'filterForm':filterForm,'data':data,'users':users,'post':post})

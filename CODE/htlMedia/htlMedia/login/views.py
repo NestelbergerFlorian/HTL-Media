@@ -12,7 +12,7 @@ def login_view(request):
 def login(request,username,password):
     user = User.objects.filter(username=username).first()
     if user == None:
-        User.objects.create(username=username,password = password,roles=1)
+        user=User.objects.create(username=username,password = password,roles=1)
     
     request.session['user'] = user.pk
     
